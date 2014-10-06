@@ -1,0 +1,133 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    Jkt
+ * @package     Jkt_Social
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php if (Mage::helper('jkt_social')->isActive()): ?>
+	<script type="text/javascript">
+	//<![CDATA[
+		function jktSocialPrepareFastLinks(){
+			try{
+				if ($$('.gs-login-fast_links').length > 0){
+					var fast_links = $$('.gs-login-fast_links')[0];
+					if (fast_links.up('ul.links') != 'undefined'){
+						if (fast_links.up('ul.links').getHeight() > 30){
+						    fast_links.up('li').previous().addClassName('last');
+						}
+					}
+				}
+			}catch(e){}
+		}
+		document.observe("dom:loaded", function() {
+			setTimeout(jktSocialPrepareFastLinks, 3000);
+		});
+	//]]>
+	</script>
+<?php endif; ?>
+<?php if (Mage::helper('jkt_social')->isFBActive() && Mage::getStoreConfig('jkt_social/general/enable')): ?>
+	<div id="fb-root"></div>
+	<script type="text/javascript">
+	//<![CDATA[
+
+		  function jktSocialFBLogin(){
+	        FB.login(function(response) {
+	      	  jktSocialFBLoginResponse(response);
+	    	  }, {scope:'email'});
+		  }
+
+ 	      function jktSocialFBCheckLogin(){
+	    	FB.getLoginStatus(function(response) {
+	    		jktSocialFBLoginResponse(response);
+	    	});
+		  }
+
+		  function jktSocialFBLoginResponse(response){
+		  	if (response.status == 'connected') {
+		      setLocation('<?php echo $this->getUrl('jkt_social/facebook/login', array('_secure' => true, 'gs_url' => Mage::helper('core')->urlEncode(Mage::helper('core/url')->getCurrentUrl())));  ?>');
+		    }else {
+		      window.location.reload();
+		    }
+		  }
+
+	      window.fbAsyncInit = function() {
+	        FB.init({
+	          appId: '<?php echo Mage::getStoreConfig('jkt_social/facebook/id') ?>',
+	          status: false,
+	          cookie: true,
+	          xfbml: true,
+	          oauth: true
+	        });
+
+	        FB.Event.subscribe('auth.login', function(response) {
+	        	jktSocialFBCheckLogin();
+	        });
+
+	      };
+
+	      (function (d) {
+	    	    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+	    	    if (d.getElementById(id)) { return; }
+	    	    js = d.createElement('script'); js.id = id; js.async = true;
+	    	    js.src = "//connect.facebook.net/<?php echo Mage::app()->getLocale()->getLocaleCode() ?>/all.js";
+	    	    ref.parentNode.insertBefore(js, ref);
+	      }(document));
+
+	//]]>
+	</script>
+<?php endif; ?>
+<?php if (Mage::helper('jkt_social')->isGActive() && Mage::getStoreConfig('jkt_social/general/enable')): ?>
+ 	<script type="text/javascript">
+	//<![CDATA[
+
+	 	function jktSocialGSigninCallback(authResult){
+		      if (authResult['code']) {
+			      var params = {code: authResult['code'], google_plus: 1};
+		    	  var request = new Ajax.Request('<?php echo $this->getUrl('jkt_social/google/callback', array('_secure' => true, 'gs_url' => Mage::helper('core')->urlEncode(Mage::helper('core/url')->getCurrentUrl())));  ?>',
+		    	  {
+				    method: 'post',
+				    parameters: params,
+				    onSuccess: function(transport){
+				    	var response = eval('('+(transport.responseText || false)+')');
+	    			    if (response.redirect){
+	    			    	setLocation(response.redirect);
+	        			}else{
+				    		window.location.reload();
+	        			}
+				    }
+		    	  });
+		      }
+	  }
+
+      (function() {
+	       var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	       po.src = 'https://apis.google.com/js/client:plusone.js';
+	       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	       window.___gcfg = {
+	   		    lang: '<?php echo Mage::app()->getLocale()->getLocaleCode() ?>',
+	   		    parsetags: 'onload'
+	   	   }
+      })();
+    //]]>
+	</script>
+<?php endif; ?>

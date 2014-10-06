@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <MyModule_LogProductUpdate>
+            <active>true</active>
+            <codePool>local</codePool>
+        </MyModule_LogProductUpdate>
+    </modules>
+</config>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Joy_Catalog>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Joy_Catalog>
+    </modules>
+</config>
