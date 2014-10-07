@@ -42,13 +42,9 @@
 
 <div class="events_item_view">
     <?php if ($imageUrl = $this->getImageUrl($_eventsItem, 500)): ?>
-        <p><br></p>
-        <p><img src="<?php echo $imageUrl ?>" alt="<?php echo $this->escapeHtml($_eventsItem->getTitle()) ?>" />
-        <p><br></p>
-        <iframe width="500" height="300" frameborder="0" style="border:0"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDnyECxdC0y_KA9-rom0WqopI8AWmUz6AQ&q=<?php echo $this->escapeHtml($_eventsItem->getVenue());?>">
-        </iframe></p>
-        <p><br></p>
+       <p><br></p>
+       <p><img src="<?php echo $imageUrl ?>" alt="<?php echo $this->escapeHtml($_eventsItem->getTitle()) ?>" /></p>
+       <p><br></p>
     <?php endif; ?>
     <div class="events_item_content"><span style="font-size:14px;font-weight:bold">Event Details</span><br/><?php echo $_eventsItem->getDetails(); ?></div>
 	 <div class="events_item_content"><span style="font-size:14px;font-weight:bold">Eligibility</span><br/><?php echo $_eventsItem->getEligibility(); ?></div>

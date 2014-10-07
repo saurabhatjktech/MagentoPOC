@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Easylife_Customform>
+            <version>0.0.1</version>
+        </Easylife_Customform>
+    </modules>
+    <global>
+        <blocks>
+            <customform><!-- block alias -->
+                <class>Easylife_Customform_Block</class>
+            </customform>
+        </blocks>
+        <helpers>
+            <customform><!-- helper alias -->
+                <class>Easylife_Customform_Helper</class>
+            </customform>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <customform>
+                <use>standard</use>
+                <args>
+                    <module>Easylife_Customform</module>
+                    <frontName>customform</frontName><!-- url key for module -->
+                </args>
+            </customform>
+        </routers>
+        <layout>
+            <updates>
+                <easylife_customform>
+                    <file>easylife_customform.xml</file><!-- frontend layout file -->
+                </easylife_customform>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Easylife_Customform>
+                    <files>
+                        <default>Easylife_Customform.csv</default><!-- translation file (not mandatory) -->
+                    </files>
+                </Easylife_Customform>
+            </modules>
+        </translate>
+    </frontend>
+
+    <admin>
+        <routers>
+            <customform>
+                <use>admin</use>
+                <args>
+                    <module>Easylife_Customform</module>
+                    <frontName>Easylife_Customform</frontName>
+                </args>
+            </customform>
+        </routers>
+    </admin>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Easylife_Customform>
+                    <files>
+                        <default>VladimirPopov_WebForms.csv</default>
+                    </files>
+                </Easylife_Customform>
+            </modules>
+        </translate>
+        <menu>
+            <customform module="customform">
+                <title>User-survey</title>
+                <sort_order>77</sort_order>
+                <children>
+                    <forms module="customform">
+                        <title>Manage Forms</title>
+                        <sort_order>0</sort_order>
+                        <action>webforms/adminhtml_webforms</action>
+                    </forms>
+                </children>
+            </customform>
+        </menu>
+    </adminhtml>
+</config>

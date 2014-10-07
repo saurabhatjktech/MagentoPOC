@@ -1,0 +1,6 @@
+<?php if ($product->getTypeId() === Solvingmagento_AffiliateProduct_Model_Product_Type::TYPE_AFFILIATE) : ?>
+    <a href="<?php Mage::helper('solvingmagento_affiliateproduct')->getRedirectUrl($product);?>" class="link-cart"><?php
+    echo Mage::helper('solvingmagento_affiliateproduct')->__('Go to partner site') ?></a>
+<?php else: ?>
+    <a href="<?php echo $this->getItemAddToCartUrl($_item) ?>" class="link-cart"><?php echo $this->__('Add to Cart') ?></a>
+<?php endif;?>

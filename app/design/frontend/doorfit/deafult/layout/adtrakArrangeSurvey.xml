@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+<adtrak_arrangesurvey_index_index>
+    <label>Arrange A Survey</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+            <action method="setHeaderTitle" translate="title" module="arrangesurvey"><title>Arrange A Survey</title></action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="surveyForm" template="arrangesurvey/index.phtml"/>
+        </reference>
+    </adtrak_arrangesurvey_index_index>
+
+    <adtrak_arrangesurvey_thanks_index>
+        <label>Thank You</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+            <action method="setHeaderTitle" translate="title" module="contacts"><title>Thank You</title></action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="surveyForm" template="arrangesurvey/thanks.phtml"/>
+        </reference>
+    </adtrak_arrangesurvey_thanks_index>
+</layout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <JKT_LogProductUpdate>
+            <version>0.0.1</version>
+        </JKT_LogProductUpdate>
+    </modules>
+
+    <!-- Configure our module's behavior in the global scope -->
+    <global>
+
+        <!-- Defining models -->
+        <models>
+
+            <!--
+                Unique identifier in the model's node.
+                By convention, we put the module's name in lowercase.
+            -->
+            <JKT_LogProductUpdate>
+
+                <!--
+                    The path to our models directory, with directory
+                    separators replaced by underscores
+                -->
+                <class>JKT_LogProductUpdate_Model</class>
+
+            </JKT_LogProductUpdate>
+
+        </models>
+
+        <events>
+            <catalog_product_save_after>
+                <observers>
+                    <JKT_LogProductUpdate>
+                        <class>JKT_LogProductUpdate/observer</class>
+                        <method>logUpdate</method>
+                        <type>singleton</type>
+                    </JKT_LogProductUpdate>
+                </observers>
+            </catalog_product_save_after>
+        </events>
+
+    </global>
+
+</config>
