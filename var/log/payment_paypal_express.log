@@ -1,0 +1,152 @@
+2014-08-18T07:50:08+00:00 DEBUG (7): Array
+(
+    [url] => https://api-3t.sandbox.paypal.com/nvp
+    [SetExpressCheckout] => Array
+        (
+            [PAYMENTACTION] => Authorization
+            [AMT] => 258.63
+            [CURRENCYCODE] => USD
+            [RETURNURL] => http://localhost/magento/paypal/express/return/
+            [CANCELURL] => http://localhost/magento/paypal/express/cancel/
+            [INVNUM] => 400000002
+            [SOLUTIONTYPE] => Mark
+            [GIROPAYCANCELURL] => http://localhost/magento/paypal/express/cancel/
+            [GIROPAYSUCCESSURL] => http://localhost/magento/checkout/onepage/success/
+            [BANKTXNPENDINGURL] => http://localhost/magento/checkout/onepage/success/
+            [LOCALECODE] => en_US
+            [BILLINGTYPE] => MerchantInitiatedBilling
+            [ITEMAMT] => 225.00
+            [TAXAMT] => 20.25
+            [SHIPPINGAMT] => 13.38
+            [L_NUMBER0] => wbk002M
+            [L_NAME0] => Black Nolita Cami
+            [L_QTY0] => 1
+            [L_AMT0] => 150.00
+            [L_NUMBER1] => mtk000
+            [L_NAME1] => Chelsea Tee
+            [L_QTY1] => 1
+            [L_AMT1] => 75.00
+            [BUSINESS] => 
+            [NOTETEXT] => 
+            [EMAIL] => ankush.knightrider77@gmail.com
+            [FIRSTNAME] => ankush
+            [LASTNAME] => kumar
+            [MIDDLENAME] => 
+            [SALUTATION] => 
+            [SUFFIX] => 
+            [COUNTRYCODE] => US
+            [STATE] => CA
+            [CITY] => noida
+            [STREET] => hydel colony
+            [ZIP] => 46546
+            [PHONENUM] => 645465464646
+            [SHIPTOCOUNTRYCODE] => US
+            [SHIPTOSTATE] => CA
+            [SHIPTOCITY] => noida
+            [SHIPTOSTREET] => hydel colony
+            [SHIPTOZIP] => 46546
+            [SHIPTOPHONENUM] => 645465464646
+            [SHIPTOSTREET2] => noida
+            [STREET2] => noida
+            [SHIPTONAME] => ankush kumar
+            [ADDROVERRIDE] => 1
+            [METHOD] => SetExpressCheckout
+            [VERSION] => 72.0
+            [USER] => ****
+            [PWD] => ****
+            [SIGNATURE] => ****
+            [BUTTONSOURCE] => Magento_Cart_Community
+        )
+
+    [response] => Array
+        (
+            [TIMESTAMP] => 2014-08-18T07:50:08Z
+            [CORRELATIONID] => e0976ad465ecf
+            [ACK] => Failure
+            [VERSION] => 72.0
+            [BUILD] => 12364540
+            [L_ERRORCODE0] => 10002
+            [L_SHORTMESSAGE0] => Security error
+            [L_LONGMESSAGE0] => Security header is not valid
+            [L_SEVERITYCODE0] => Error
+        )
+
+    [__pid] => 2570
+)
+
+2014-08-18T07:50:33+00:00 DEBUG (7): Array
+(
+    [url] => https://api-3t.sandbox.paypal.com/nvp
+    [SetExpressCheckout] => Array
+        (
+            [PAYMENTACTION] => Authorization
+            [AMT] => 259.92
+            [CURRENCYCODE] => USD
+            [RETURNURL] => http://localhost/magento/paypal/express/return/
+            [CANCELURL] => http://localhost/magento/paypal/express/cancel/
+            [INVNUM] => 400000003
+            [SOLUTIONTYPE] => Mark
+            [GIROPAYCANCELURL] => http://localhost/magento/paypal/express/cancel/
+            [GIROPAYSUCCESSURL] => http://localhost/magento/checkout/onepage/success/
+            [BANKTXNPENDINGURL] => http://localhost/magento/checkout/onepage/success/
+            [LOCALECODE] => en_US
+            [BILLINGTYPE] => MerchantInitiatedBilling
+            [ITEMAMT] => 225.00
+            [TAXAMT] => 20.25
+            [SHIPPINGAMT] => 14.67
+            [L_NUMBER0] => wbk002M
+            [L_NAME0] => Black Nolita Cami
+            [L_QTY0] => 1
+            [L_AMT0] => 150.00
+            [L_NUMBER1] => mtk000
+            [L_NAME1] => Chelsea Tee
+            [L_QTY1] => 1
+            [L_AMT1] => 75.00
+            [BUSINESS] => 
+            [NOTETEXT] => 
+            [EMAIL] => ankush.knightrider77@gmail.com
+            [FIRSTNAME] => ankush
+            [LASTNAME] => kumar
+            [MIDDLENAME] => 
+            [SALUTATION] => 
+            [SUFFIX] => 
+            [COUNTRYCODE] => US
+            [STATE] => CA
+            [CITY] => noida
+            [STREET] => hydel colony
+            [ZIP] => 46546
+            [PHONENUM] => 645465464646
+            [SHIPTOCOUNTRYCODE] => US
+            [SHIPTOSTATE] => CA
+            [SHIPTOCITY] => noida
+            [SHIPTOSTREET] => hydel colony
+            [SHIPTOZIP] => 46546
+            [SHIPTOPHONENUM] => 645465464646
+            [SHIPTOSTREET2] => noida
+            [STREET2] => noida
+            [SHIPTONAME] => ankush kumar
+            [ADDROVERRIDE] => 1
+            [METHOD] => SetExpressCheckout
+            [VERSION] => 72.0
+            [USER] => ****
+            [PWD] => ****
+            [SIGNATURE] => ****
+            [BUTTONSOURCE] => Magento_Cart_Community
+        )
+
+    [response] => Array
+        (
+            [TIMESTAMP] => 2014-08-18T07:50:32Z
+            [CORRELATIONID] => ef84f062b7378
+            [ACK] => Failure
+            [VERSION] => 72.0
+            [BUILD] => 12364540
+            [L_ERRORCODE0] => 10002
+            [L_SHORTMESSAGE0] => Security error
+            [L_LONGMESSAGE0] => Security header is not valid
+            [L_SEVERITYCODE0] => Error
+        )
+
+    [__pid] => 2956
+)
+
