@@ -23,13 +23,13 @@
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class User_Surveys_Block_Adminhtml_Surveys extends Mage_Adminhtml_Block_Widget_Grid_Container
+class User_Surveys_Block_Adminhtml_Results_Feedback extends Mage_Adminhtml_Block_Widget_Form_Container
 {
     /**
      * Block constructor
      */
     public function __construct()
-    {
+    {die('Feedback');
         $this->_blockGroup = 'user_surveys';
         $this->_controller = 'adminhtml_surveys';
         $this->_headerText = Mage::helper('user_surveys')->__('Manage Surveys');

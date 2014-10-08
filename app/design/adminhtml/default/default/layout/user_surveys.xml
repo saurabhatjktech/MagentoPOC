@@ -65,4 +65,11 @@
             </block>
         </reference>
     </adminhtml_surveys_edit>
+    
+    <adminhtml_results_feedback>
+        <reference name="content">
+            <block type="user_surveys/adminhtml_results_feedback" name="feedback"/>
+        </reference>        
+    </adminhtml_results_feedback>
+    
 </layout>

@@ -272,16 +272,16 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
         
     }
     
-    public function viewAction()
+    public function feedbackAction()
     {
     	$this->_title($this->__('View'))
     		 ->_title($this->__('Surveys Feedback'));
-        /*$userId= $this->getRequest()->getParam('userId');
+        $userId= $this->getRequest()->getParam('userId');
         $formId= $this->getRequest()->getParam('formId');
         $model = Mage::getModel('user_surveys/surveys')->getCollection();
         $model->addFieldToFilter('user_id', array('eq' => $userId));
         $model->addFieldToFilter('form_id', array('eq' => $formId));
-        $model->load();
+        $model->load();/*
          $collection= Mage::getModel('user_surveys/questions');
         $questionId= $collection->getId(); 
         $collection->getCollection()->addFieldToFilter('id', array('eq' => $questionId));
@@ -290,7 +290,7 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
         echo'</pre>';
         die('here');
          Mage::register('model_view', $model); 
-       */    	
+           	*/
         
         $this->_initAction();
         $this->renderLayout();

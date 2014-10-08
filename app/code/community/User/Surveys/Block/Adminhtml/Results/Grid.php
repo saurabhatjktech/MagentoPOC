@@ -100,7 +100,7 @@ class User_Surveys_Block_Adminhtml_Results_Grid extends Mage_Adminhtml_Block_Wid
      */
     public function getRowUrl($row)
     {
-        return $this->getUrl('*/*/view', array('userId' => $row->getUserId(), 'formId' => $row->getFormId()));
+        return $this->getUrl('*/*/feedback', array('userId' => $row->getUserId(), 'formId' => $row->getFormId()));
     }
 
     /**
