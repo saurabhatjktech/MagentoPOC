@@ -147,6 +147,40 @@ class User_Surveys_Adminhtml_QuestionsController extends Mage_Adminhtml_Controll
         $this->_redirect($redirectPath, $redirectParams);
     }   
 
+    public function deleteAction()
+    {
+        // check if we know what should be deleted
+        $id = $this->getRequest()->getParam('id');
+        //echo '<pre>'; print($id); echo '</pre>'; die("Testing ...!!!!");
+        if ($id) {
+            try {
+                // init model and delete
+                /** @var $model User_Surveys_Model_Item */
+                $model = Mage::getModel('user_surveys/questions');
+                $model->load($id);
+                if (!$model->getId()) {
+                    Mage::throwException(Mage::helper('user_surveys')->__('Unable to find Question'));
+                }
+                $model->delete();
+
+                // display success message
+                $this->_getSession()->addSuccess(
+                    Mage::helper('user_surveys')->__('Question deleted Successfully.')
+                );
+            } catch (Mage_Core_Exception $e) {
+                $this->_getSession()->addError($e->getMessage());
+            } catch (Exception $e) {
+                $this->_getSession()->addException($e,
+                    Mage::helper('user_surveys')->__('An error occurred while deleting Question.')
+                );
+            }
+        }
+
+        // go to grid
+        $this->_redirect('*/*/');
+    }
+
+
     /**
      * Grid ajax action
      */
