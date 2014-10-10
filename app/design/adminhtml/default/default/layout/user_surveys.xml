@@ -55,14 +55,15 @@
         <reference name="content">
             <block type="user_surveys/adminhtml_surveys_edit" name="surveys_edit" />
         </reference>
-        <reference name="left">
-            <block type="user_surveys/adminhtml_surveys_edit_tabs" name="surveys_edit_tabs">
-                <block type="user_surveys/adminhtml_surveys_edit_tab_main" name="surveys_edit_tab_main" />
-                <block type="user_surveys/adminhtml_surveys_edit_tab_content" name="surveys_edit_tab_content" />
-                <block type="user_surveys/adminhtml_surveys_edit_tab_image" name="surveys_edit_tab_image" />
-                <action method="addTab"><name>main_section</name><block>surveys_edit_tab_main</block></action>
-                <action method="addTab"><name>content_section</name><block>surveys_edit_tab_content</block></action>
-            </block>
-        </reference>
     </adminhtml_surveys_edit>
+
+    <adminhtml_questions_new>
+        <update handle="adminhtml_questions_edit" />
+    </adminhtml_questions_new>
+
+    <adminhtml_questions_edit>
+        <reference name="content">
+            <block type="user_surveys/adminhtml_questions_edit" name="questions_edit"/>
+        </reference>        
+    </adminhtml_questions_edit>
 </layout>

@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  * Magento
  *
@@ -38,18 +38,17 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
         }
     }
 
+
+
+    public function indexAction(){
+        
+       echo "We're echoing just to show that this is what's called, normally you'd have some kind of redirect going on here";
+    }
     /**
      * Index action
      */
-    public function indexAction()
-    {       
-        $this->loadLayout();
-        $this->getLayout()->getBlock('surveysForm')
-            ->setFormAction( Mage::getUrl('*/*/post') );
-        $this->_initLayoutMessages('customer/session');
-        $this->_initLayoutMessages('catalog/session');
-        $this->renderLayout();
-    }
+
+    
    
     /*Insert Form Data*/
     public function postAction()

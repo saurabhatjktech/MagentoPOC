@@ -29,15 +29,15 @@ class User_Surveys_Block_Adminhtml_Questions extends Mage_Adminhtml_Block_Widget
      * Block constructor
      */
     public function __construct()
-    {
+    {   
         $this->_blockGroup = 'user_surveys';
         $this->_controller = 'adminhtml_questions';
-        $this->_headerText = Mage::helper('user_surveys')->__('Manage Questions');
+        $this->_headerText = Mage::helper('user_surveys')->__('Questions Inventroy');
 
         parent::__construct();
 
         if (Mage::helper('user_surveys/admin')->isActionAllowed('save')) {
-            $this->_updateButton('add', 'label', Mage::helper('user_surveys')->__('Add New Survey'));
+            $this->_updateButton('add', 'label', Mage::helper('user_surveys')->__('Add New Questions'));
         } else {
             $this->_removeButton('add');
         }

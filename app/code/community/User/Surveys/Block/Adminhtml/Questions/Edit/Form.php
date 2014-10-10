@@ -23,7 +23,7 @@
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class User_Surveys_Block_Adminhtml_Surveys_Edit_Form extends Mage_Adminhtml_Block_Widget_Form
+class User_Surveys_Block_Adminhtml_Questions_Edit_Form extends Mage_Adminhtml_Block_Widget_Form
 {
     /**
      * Prepare form action
@@ -31,18 +31,25 @@ class User_Surveys_Block_Adminhtml_Surveys_Edit_Form extends Mage_Adminhtml_Bloc
      * @return User_Surveys_Block_Adminhtml_News_Edit_Form
      */
     protected function _prepareForm()
-    {
-        // $model = Mage::helper('user_surveys')->getEventsItemInstance();
+    {   
+
+        /*die("HERE");
+        $model = Mage::helper('user_surveys')->getEventsItemInstance();
         $formId = Mage::registry('formId');
         $model = Mage::getModel('user_surveys/forms')->load($formId);
         $surveys_item = Mage::registry('surveys_item');
 
-        //$questions_ids = explode(',',$surveys_item['questions_id']);
         $questions_ids = explode(',',$surveys_item['questions_id']);
         
         $collection = Mage::getModel('user_surveys/questions')->getCollection()->load();
-        $result= $collection->getItems();
-        //echo "<pre>"; print_r($model); echo "</pre>";
+        $result= $collection->getItems();*/
+
+        $questionId = $this->getRequest()->getParam('id');
+        $model = Mage::getModel('user_surveys/questions')->load($questionId);
+        
+        $questionData= Mage::registry('questionData');
+        //echo "<pre>"; print_r($model); echo "</pre>";// die("Testing...>!!!!!!!");
+
         $form = new Varien_Data_Form(array(
             'id'      => 'edit_form',
             'action'  => $this->getUrl('*/*/save'),
@@ -54,38 +61,39 @@ class User_Surveys_Block_Adminhtml_Surveys_Edit_Form extends Mage_Adminhtml_Bloc
         $fieldset = $form->addFieldset(
             'general',
             array(
-                'legend' => $this->__('Manage Survey Form')
+                'legend' => $this->__('Manage Question')
             )
         );
-        if ($surveys_item->getId()) {
+        if ($questionData->getId()) {
             $fieldset->addField('id', 'hidden', array(
                 'name' => 'id',
             ));
         }
-        // Add the fields that we want to be editable.
-        $fieldset->addField('form_name', 'text', array(
-            'name'     => 'form_name',
-            'label'    => Mage::helper('user_surveys')->__('Form Name'),
-            'title'    => Mage::helper('user_surveys')->__('Form Name'),
-            'required' => false,
-            
-        ));
-        
-        foreach ($result as $value) {
-            $flag = '';
-            if( in_array($value['id'], $questions_ids) ){
-                $flag = 'checked';
-            }else $flag = '';
 
-            $fieldset->addField($value['id'], 'checkbox' , array(
-                'name'     => 'questionsid_'.$value['id'],
-                'label'    => Mage::helper('user_surveys')->__($value['questions']),
-                'title'    => Mage::helper('user_surveys')->__($value['questions']),
-                'required' => false,
-                'checked'  => $flag,
-                'onchange'  => 'this.value = this.checked ? '.$value['id'].' : 0;'
-            ));
-        }
+        $inputTypes = Mage::getModel('eav/adminhtml_system_config_source_inputtype')->toOptionArray();
+
+        $fieldset->addField('type', 'select', array(
+            'name' => 'input_type',
+            'label' => Mage::helper('eav')->__('Customer Input Type'),
+            'title' => Mage::helper('eav')->__('Customer Input Type'),
+            'value' => 'text',
+            'values'=> $inputTypes
+        ));
+
+        $fieldset->addField('questions', 'textarea', array(
+            'name'     => 'quesion text',
+            'label'    => Mage::helper('user_surveys')->__('Question'),
+            'title'    => Mage::helper('user_surveys')->__('Question')
+        ));
+
+        $fieldset->addField('options', 'textarea', array(
+            'name'     => 'Field option(s)',
+            'label'    => Mage::helper('user_surveys')->__('Field option(s) if any'),
+            'title'    => Mage::helper('user_surveys')->__('Field option(s)'),
+            'note' => Mage::helper('user_surveys')->__('Multiple values should be separated with comma "," '),
+        ));
+
+        // Add the fields that we want to be editable.
 
         $form->setValues($model->getData());
         $this->setForm($form);
@@ -94,4 +102,3 @@ class User_Surveys_Block_Adminhtml_Surveys_Edit_Form extends Mage_Adminhtml_Bloc
     }
 
 }
-

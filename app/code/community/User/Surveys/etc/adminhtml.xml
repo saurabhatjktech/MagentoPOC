@@ -37,8 +37,8 @@
                     <sort_order>35</sort_order>
                 </manage>
                 <create translate="title" module="user_surveys">
-                    <title>User Feedbacks</title>
-                    <action>adminhtml/surveys/new</action>
+                    <title>Manage Questions</title>
+                    <action>adminhtml/questions</action>
                     <sort_order>36</sort_order>
                 </create>
             </children>

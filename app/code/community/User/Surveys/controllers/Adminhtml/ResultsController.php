@@ -88,6 +88,7 @@ class User_Surveys_Adminhtml_ResultsController extends Mage_Adminhtml_Controller
     {
         $this->loadLayout();
         $this->renderLayout();
+
     }
 
     /**
@@ -105,7 +106,8 @@ class User_Surveys_Adminhtml_ResultsController extends Mage_Adminhtml_Controller
     
 
     public function indexAction()
-    {
+    {   
+        echo("Inside defzd action");
         $this->_title($this->__('Surveys'))
              ->_title($this->__('Manage Surveys'));
 
@@ -115,7 +117,7 @@ class User_Surveys_Adminhtml_ResultsController extends Mage_Adminhtml_Controller
 
 
     public function viewAction()
-    {
+    {   echo("Inside view action");
         $this->_title($this->__('View'))
              ->_title($this->__('Surveys Feedback'));
         /*$userId= $this->getRequest()->getParam('userId');
@@ -139,7 +141,7 @@ class User_Surveys_Adminhtml_ResultsController extends Mage_Adminhtml_Controller
 
     public function resultsAction()
     {
-        
+        echo("Inside result action");
         $this->_title($this->__('Feedbacks'))
              ->_title($this->__('Manage Feedbacks'));
 

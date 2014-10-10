@@ -28,7 +28,7 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
     /**
      * Init actions
      *
-     * @return User_Surveys_Adminhtml_SurveysController
+     * @return User_Surveys_Adminhtml_SurveysController test
      */
     protected function _initAction()
     {
@@ -268,7 +268,7 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
      * Index action
      */
     public function resultsAction()
-    {
+    {   
         $this->_title($this->__('Feedbacks'))
              ->_title($this->__('Manage Feedbacks'));
 

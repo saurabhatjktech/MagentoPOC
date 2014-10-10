@@ -107,7 +107,7 @@
             <adminhtml>
                 <args>
                     <modules>
-                        <User_Surveys before="Mage_Adminhtml">User_Surveys_Adminhtml</User_Surveys>
+                        <user_surveys before="Mage_Adminhtml">User_Surveys_Adminhtml</user_surveys>
                     </modules>
                 </args>
             </adminhtml>
