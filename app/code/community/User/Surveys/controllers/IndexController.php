@@ -110,8 +110,7 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
     {	
     	
     	$post = $this->getRequest()->getPost();
-    	//die('here');
-    	
+
     	if ( $post ) {
             $model = Mage::getModel('user_surveys/surveys');
             foreach ($post as $key => $value) {

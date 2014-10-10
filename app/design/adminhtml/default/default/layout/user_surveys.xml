@@ -54,22 +54,13 @@
         <update handle="editor"/>
         <reference name="content">
             <block type="user_surveys/adminhtml_surveys_edit" name="surveys_edit" />
-        </reference>
-        <reference name="left">
-            <block type="user_surveys/adminhtml_surveys_edit_tabs" name="surveys_edit_tabs">
-                <block type="user_surveys/adminhtml_surveys_edit_tab_main" name="surveys_edit_tab_main" />
-                <block type="user_surveys/adminhtml_surveys_edit_tab_content" name="surveys_edit_tab_content" />
-                <block type="user_surveys/adminhtml_surveys_edit_tab_image" name="surveys_edit_tab_image" />
-                <action method="addTab"><name>main_section</name><block>surveys_edit_tab_main</block></action>
-                <action method="addTab"><name>content_section</name><block>surveys_edit_tab_content</block></action>
-            </block>
-        </reference>
+        </reference>     
     </adminhtml_surveys_edit>
-    
-    <adminhtml_results_feedback>
+
+    <adminhtml_surveys_view>
         <reference name="content">
-            <block type="user_surveys/adminhtml_results_feedback" name="feedback"/>
+            <block type="user_surveys/adminhtml_results_view_form" name="view"/>
         </reference>        
-    </adminhtml_results_feedback>
-    
+    </adminhtml_surveys_view>
+
 </layout>

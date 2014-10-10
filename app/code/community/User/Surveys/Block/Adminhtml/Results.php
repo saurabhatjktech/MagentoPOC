@@ -30,15 +30,9 @@ class User_Surveys_Block_Adminhtml_Results extends Mage_Adminhtml_Block_Widget_G
     {
         $this->_blockGroup = 'user_surveys';
         $this->_controller = 'adminhtml_results';
-        $this->_headerText = Mage::helper('user_surveys')->__('Manage Surveys');
+        $this->_headerText = Mage::helper('user_surveys')->__('Surveys Result');
 
         parent::__construct();
-
-        if (Mage::helper('user_surveys/admin')->isActionAllowed('save')) {
-            $this->_updateButton('add', 'label', Mage::helper('user_surveys')->__('Add New Survey'));
-        } else {
-            $this->_removeButton('add');
-        }
 
     }
 }
