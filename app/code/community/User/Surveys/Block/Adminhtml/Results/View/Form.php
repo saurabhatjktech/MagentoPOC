@@ -66,9 +66,7 @@ class User_Surveys_Block_Adminhtml_Results_View_Form extends Mage_Adminhtml_Bloc
                 'legend' => $this->__('User Reviews :   ' .$customerEmail .'<br/>' .'Form Name :  ' . $formName)
             )
         );
-        
-        
-        
+       
         $data= $model->getData();
         
         foreach ($data as $key=>$value){
