@@ -43,7 +43,7 @@
                     <surveys>
                         <table>surveys</table>
                     </surveys>
-
+                    
                     <forms>
                         <table>surveys_form</table>
                     </forms>
@@ -107,7 +107,7 @@
             <adminhtml>
                 <args>
                     <modules>
-                        <user_surveys before="Mage_Adminhtml">User_Surveys_Adminhtml</user_surveys>
+                        <User_Surveys before="Mage_Adminhtml">User_Surveys_Adminhtml</User_Surveys>
                     </modules>
                 </args>
             </adminhtml>

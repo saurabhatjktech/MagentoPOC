@@ -30,7 +30,7 @@ class User_Surveys_Block_Adminhtml_Surveys_Edit extends Mage_Adminhtml_Block_Wid
      *
      */
     public function __construct()
-    {   
+    {
         $this->_objectId   = 'id';
         $this->_blockGroup = 'user_surveys';
         $this->_controller = 'adminhtml_surveys';

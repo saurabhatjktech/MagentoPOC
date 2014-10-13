@@ -31,8 +31,8 @@
             <block type="user_surveys/adminhtml_surveys" name="surveys" />
         </reference>
     </adminhtml_surveys_index>
-    
-    <adminhtml_surveys_results>
+
+     <adminhtml_surveys_results>
         <reference name="content">
             <block type="user_surveys/adminhtml_results" name="surveys_results" />
         </reference>
@@ -54,16 +54,19 @@
         <update handle="editor"/>
         <reference name="content">
             <block type="user_surveys/adminhtml_surveys_edit" name="surveys_edit" />
-        </reference>
+        </reference>     
     </adminhtml_surveys_edit>
 
-    <adminhtml_questions_new>
-        <update handle="adminhtml_questions_edit" />
-    </adminhtml_questions_new>
+    <adminhtml_surveys_view>
+        <reference name="content">
+            <block type="user_surveys/adminhtml_results_view_form" name="view"/>
+        </reference>        
+    </adminhtml_surveys_view>
 
-    <adminhtml_questions_edit>
+     <adminhtml_questions_edit>
         <reference name="content">
             <block type="user_surveys/adminhtml_questions_edit" name="questions_edit"/>
         </reference>        
     </adminhtml_questions_edit>
+
 </layout>

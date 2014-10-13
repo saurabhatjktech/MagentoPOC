@@ -30,7 +30,7 @@ class User_Surveys_Block_List extends Mage_Core_Block_Template
      *
      * @var User_Surveys_Model_Resource_Surveys_Collection
      */
-    protected $_surveysCollection = null;
+    protected $_formsCollection = null;
 
     /**
      * Retrieve surveys collection
@@ -49,12 +49,12 @@ class User_Surveys_Block_List extends Mage_Core_Block_Template
      */
     public function getCollection()
     {
-        if (is_null($this->_surveysCollection)) {
-            $this->_surveysCollection = $this->_getCollection();
-            $this->_surveysCollection->prepareForList($this->getCurrentPage());
+        if (is_null($this->_formsCollection)) {
+            $this->_formsCollection = $this->_getCollection();
+            $this->_formsCollection->prepareForList($this->getCurrentPage());
         }
 
-        return $this->_surveysCollection;
+        return $this->_formsCollection;
     }
 
     /**

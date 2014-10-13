@@ -19,7 +19,7 @@
  * versions in the future. If you wish to customize Magento for your
  * needs please refer to http://www.magentocommerce.com for more information.
  *
- * @category    User
+ * @category    Social
  * @package     User_Survey
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
@@ -35,20 +35,17 @@
                 <prepare>true</prepare>
             </action>
         </reference>
-		 <reference name="top.links">
-			 <action method="addLink" translate="label title" module="user_surveys">
+		<reference name="top.links">
+             <action method="addLink" translate="label title" module="user_surveys">
                 <label>Surveys</label>
                 <url>surveys</url>
                 <title>Surveys</title>
                 <prepare>true</prepare>
             </action>
         </reference>
-
-        
-
     </default>
     <user_surveys_index_index translate="label">
-        <label>Surveys Page</label>
+        <label>Surveys List Page</label>
         <reference name="root">
             <action method="setTemplate">
                 <template>page/2columns-right.phtml</template>
@@ -58,11 +55,20 @@
             </action>
         </reference>
         <reference name="content">
-            <block type="core/template" name="surveysForm" template="usersurveys/surveys/form.phtml" />
-        </reference>
-
-        <reference name="content" >
-            <block type="survey/adminhtml_grid" name="survey" />
+            <block type="user_surveys/list" name="forms.list" template="usersurveys/forms/list.phtml">
+                <block type="page/html_pager" name="forms.list.pager" as="forms_list_pager" />
+            </block>
         </reference>
     </user_surveys_index_index>
+    <user_surveys_index_view translate="label">
+        <label>Surveys Item Page</label>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-right.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="user_surveys/item" name="forms.item" template="usersurveys/forms/item.phtml" />
+        </reference>
+    </user_surveys_index_view>
 </layout>

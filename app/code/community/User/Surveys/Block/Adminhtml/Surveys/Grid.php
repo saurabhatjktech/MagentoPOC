@@ -55,12 +55,8 @@ class User_Surveys_Block_Adminhtml_Surveys_Grid extends Mage_Adminhtml_Block_Wid
      *
      * @return Mage_Adminhtml_Block_Catalog_Search_Grid
      */
-    
-    
     protected function _prepareColumns()
     {
-        //echo '<pre>'; print($this->getFormName()); echo '<pre>'; die("Here");
-
         $this->addColumn('id', array(
             'header'    => Mage::helper('user_surveys')->__('ID #'),
             'width'     => '150px',
@@ -108,7 +104,6 @@ class User_Surveys_Block_Adminhtml_Surveys_Grid extends Mage_Adminhtml_Block_Wid
      */
     public function getGridUrl()
     {
-        return $this->getUrl('*/*/grid', array('_current'=>true));
+        return $this->getUrl('*/*/grid', array('_current' => true));
     }
-    
 }

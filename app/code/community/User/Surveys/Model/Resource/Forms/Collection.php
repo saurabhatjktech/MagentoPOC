@@ -42,7 +42,7 @@ class User_Surveys_Model_Resource_Forms_Collection extends Mage_Core_Model_Resou
     public function prepareForList($page)
     {
         $this->setPageSize(Mage::helper('user_surveys')->getSurveysPerPage());
-        $this->setCurPage($page)->setOrder('published_at', Varien_Data_Collection::SORT_ORDER_DESC);
+        $this->setCurPage($page)->setOrder('form_name', Varien_Data_Collection::SORT_ORDER_ASC);
         return $this;
     }
 }

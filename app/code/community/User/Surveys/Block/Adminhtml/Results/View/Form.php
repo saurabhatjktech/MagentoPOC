@@ -31,17 +31,13 @@ class User_Surveys_Block_Adminhtml_Results_View_Form extends Mage_Adminhtml_Bloc
      * @return User_Surveys_Block_Adminhtml_News_Edit_Form
      */
     protected function _prepareForm()
-    {   die("INside FOrm");
-        // $model = Mage::helper('user_surveys')->getEventsItemInstance();
-        $formId = Mage::registry('formId');
-        $model = Mage::getModel('user_surveys/forms')->load($formId);
-        $surveys_item = Mage::registry('surveys_item');
-
-        //$questions_ids = explode(',',$surveys_item['questions_id']);
-        $questions_ids = explode(',',$surveys_item['questions_id']);
-        
-        $collection = Mage::getModel('user_surveys/questions')->getCollection()->load();
-        $result= $collection->getItems();
+    {
+        $model = Mage::registry('viewModel');
+				
+		$model->getSelect()
+		->joinLeft(array('que' => 'surveys_questions'),
+				'main_table.question_id = que.id',
+				array('surveys_questions' => 'questions'));
 
         $form = new Varien_Data_Form(array(
             'id'      => 'edit_form',
@@ -54,44 +50,33 @@ class User_Surveys_Block_Adminhtml_Results_View_Form extends Mage_Adminhtml_Bloc
         $fieldset = $form->addFieldset(
             'general',
             array(
-                'legend' => $this->__('Manage Survey Form')
+                'legend' => $this->__('User Reviews')
             )
         );
-        if ($surveys_item->getId()) {
-            $fieldset->addField('id', 'hidden', array(
-                'name' => 'id',
-            ));
-        }
-        // Add the fields that we want to be editable.
-        $fieldset->addField('form_name', 'text', array(
-            'name'     => 'form_name',
-            'label'    => Mage::helper('user_surveys')->__('Form Name'),
-            'title'    => Mage::helper('user_surveys')->__('Form Name'),
-            'required' => false,
-            
-        ));
         
-        foreach ($result as $value) {
-            $flag = '';
-            if( in_array($value['id'], $questions_ids) ){
-                $flag = 'checked';
-            }else $flag = '';
-
-            $fieldset->addField($value['id'], 'checkbox' , array(
-                'name'     => 'questionsid_'.$value['id'],
-                'label'    => Mage::helper('user_surveys')->__($value['questions']),
-                'title'    => Mage::helper('user_surveys')->__($value['questions']),
-                'required' => false,
-                'checked'  => $flag,
-                'onchange'  => 'this.value = this.checked ? '.$value['id'].' : 0;'
-            ));
+        $data= $model->getData();
+        
+        foreach ($data as $key=>$value){
+        	$text = $value['surveys_questions'].' :: '.$value['value'];
+        	$fieldset->addField($value['question_id'], 'text', array(
+        			'name'     => 'value'.$value['question_id'],
+        			'value'    => $value['value'],
+        			'label'    => Mage::helper('user_surveys')->__($text),
+        			'title'    => Mage::helper('user_surveys')->__($value['question_id']),
+        			'style'    => 'display:none;',
+        			'required' => false,        			
+        	));
         }
 
+
+        //die('HERRE');
+        
         $form->setValues($model->getData());
         $this->setForm($form);
-        $form->setUseContainer(true);
+        
         return parent::_prepareForm();
     }
 
 }
+
 

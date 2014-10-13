@@ -42,7 +42,7 @@ class User_Surveys_Block_Adminhtml_Surveys_Edit_Form extends Mage_Adminhtml_Bloc
         
         $collection = Mage::getModel('user_surveys/questions')->getCollection()->load();
         $result= $collection->getItems();
-        //echo "<pre>"; print_r($model); echo "</pre>";
+
         $form = new Varien_Data_Form(array(
             'id'      => 'edit_form',
             'action'  => $this->getUrl('*/*/save'),

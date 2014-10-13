@@ -49,12 +49,8 @@ class User_Surveys_Block_Adminhtml_Results_Grid extends Mage_Adminhtml_Block_Wid
         $id = $this->getRequest()->getParam('id');
         $model =  Mage::getModel('user_surveys/forms')->load($id);
         $formId= $model->getId();
-        
-
-        //echo "<pre>"; print($formId); echo "<pre>"; die("Testing...........................>>>>>>>>");
-
         $collection = Mage::getResourceModel('user_surveys/surveys_collection')
-        ->addFieldToFilter('form_id', array('eq' => $formId));
+        ->addFieldToFilter('form_id', array('eq' => $formId));    
     
         $collection->getSelect()
         ->joinLeft(array('cus' => 'customer_entity'),
@@ -89,7 +85,6 @@ class User_Surveys_Block_Adminhtml_Results_Grid extends Mage_Adminhtml_Block_Wid
             'header'    => Mage::helper('user_surveys')->__('User Email'),
             'index'     => 'customer_email',
         ));
-        //$this->getNameFromId(136);
         return parent::_prepareColumns();
     }
 
@@ -100,7 +95,7 @@ class User_Surveys_Block_Adminhtml_Results_Grid extends Mage_Adminhtml_Block_Wid
      */
     public function getRowUrl($row)
     {
-        return $this->getUrl('*/*/view', array('id' => $row->getId()));
+        return $this->getUrl('*/*/view', array('userId' => $row->getUserId(), 'formId' => $row->getFormId()));
     }
 
     /**
