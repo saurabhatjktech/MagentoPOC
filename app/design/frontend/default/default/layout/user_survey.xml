@@ -1,8 +1,0 @@
-<default>
-<reference name="head">
-<action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params></params></action>
-<action method="addItem"><type>js</type><name>calendar/calendar.js</name></action>
-<action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
-<block type="core/html_calendar" name="head.calendar" as="calendar" template="page/js/calendar.phtml"></block>
-</reference>
-</default>

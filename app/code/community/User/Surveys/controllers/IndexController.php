@@ -77,12 +77,22 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
         
         $questionIds = explode(',',$model['questions_id']);
         $question = array();
-        foreach ($questionIds as $id){
-        	$collection = Mage::getModel('user_surveys/questions')->load($id);        
-        	$question[$id] = $collection->getQuestions();
+        $type= array();
+        foreach ($questionIds as $key=> $value){
+        	$collection = Mage::getModel('user_surveys/questions')->load($key);        
+        	$question[$key] = $collection->getQuestions();
+            
+            $type[$key] = $collection->getType();
+            //echo "</pre>"; print_r($question); echo "</pre>";   
         }
+        //die("HEre");
+        //$type[]=  $collection->getType();
+
+
+
      	Mage::register('questions', $question);
-     	
+     	Mage::register('type', $type);
+
         if (!$model->getId()) {
             return $this->_forward('noRoute');
         }

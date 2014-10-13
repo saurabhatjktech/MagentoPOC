@@ -27,12 +27,12 @@
 <?php $_surveysItem = $this->helper('user_surveys')->getSurveysItemInstance(); ?>
     <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
     <div class="page-title">
-        <h1><?php echo Mage::helper('user_surveys')->__($this->escapeHtml($_surveysItem->getFormName())) ?></h1>
+        <h1 ><?php echo Mage::helper('user_surveys')->__($this->escapeHtml($_surveysItem->getFormName())) ?></h1>
     </div>
     <form action="<?php echo $this->getFormAction(); ?>" id="surveysForm" method="post" class="scaffold-form">
     <div class="fieldset">
-        <h2 class="legend"><?php echo Mage::helper('contacts')->__('User Reviews') ?></h2>
-        <p class="required"><?php echo Mage::helper('contacts')->__('* Required Fields') ?></p>
+        <h2 class="legend"><?php echo Mage::helper('user_surveys')->__('User Reviews') ?></h2>
+        <p class="required"><?php echo Mage::helper('user_surveys')->__('* Required Fields') ?></p>
         <ul class="form-list">
             <li>
 			     <input name="user_id" type="hidden" value="<?php echo Mage::getSingleton('customer/session')->getId(); ?>" />
@@ -42,15 +42,34 @@
             </li>
             <li>
                	<?php $que= Mage::registry('questions');
-				foreach($que as $key => $value) { ?>
-					<label for="question" class="required"><?php echo $value ?></label>
-					 <div class="input-box">	
-					<input name="question_<?php echo $key ?>" type="text" id="question_<?php echo $key ?>" title="<?php echo Mage::helper('user_surveys')->__('Question') ?>" class="input-text"></input>
-					</div>
-					<br/>
-				<?php 
-					}
-				?>
+                      $type= Mage::registry('type');
+                
+                foreach($type as $key => $value) { 
+                switch ($value) {
+                  case "text":
+                    echo $que[$key];
+                    echo $value;
+                  break;  
+                  case "select":
+                    echo $que[$key];
+                    echo $value;
+                  break;  
+                  case "textarea":
+                    echo $que[$key];
+                    echo $value;
+                  break;  
+                  case "multiselect":
+                    echo $que[$key];
+                    echo $value;    
+                  break;
+                }
+
+
+                    //echo "</pre>"; print_r($val); echo "</pre>"; 
+                
+                }
+                die("HERE...!!!");
+                ?>
 			</li>
         </ul>
     </div>
