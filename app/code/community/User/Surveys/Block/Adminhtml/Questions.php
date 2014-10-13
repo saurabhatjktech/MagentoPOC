@@ -23,27 +23,23 @@
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class User_Surveys_Model_Questions extends Mage_Core_Model_Abstract
+class User_Surveys_Block_Adminhtml_Questions extends Mage_Adminhtml_Block_Widget_Grid_Container
 {
     /**
-     * Define resource model
+     * Block constructor
      */
-    protected function _construct()
-    {
-        $this->_init('user_surveys/questions');
-    }
+    public function __construct()
+    {   
+        $this->_blockGroup = 'user_surveys';
+        $this->_controller = 'adminhtml_questions';
+        $this->_headerText = Mage::helper('user_surveys')->__('Questions Inventroy');
 
-    /**
-     * If object is new adds creation date
-     *
-     * @return User_Surveys_Model_Surveys
-     */
-    protected function _beforeSave()
-    {
-        parent::_beforeSave();
-        if ($this->isObjectNew()) {
-            $this->setData('created_at', Varien_Date::now());
+        parent::__construct();
+
+        if (Mage::helper('user_surveys/admin')->isActionAllowed('save')) {
+            $this->_updateButton('add', 'label', Mage::helper('user_surveys')->__('Add New Questions'));
+        } else {
+            $this->_removeButton('add');
         }
-        return $this;
     }
 }

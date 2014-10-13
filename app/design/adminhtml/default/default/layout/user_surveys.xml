@@ -63,4 +63,10 @@
         </reference>        
     </adminhtml_surveys_view>
 
+     <adminhtml_questions_edit>
+        <reference name="content">
+            <block type="user_surveys/adminhtml_questions_edit" name="questions_edit"/>
+        </reference>        
+    </adminhtml_questions_edit>
+
 </layout>

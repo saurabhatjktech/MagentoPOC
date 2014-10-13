@@ -23,6 +23,7 @@
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
+ /*Start by Ankush*/
 class User_Surveys_Block_Adminhtml_Results_View_Form extends Mage_Adminhtml_Block_Widget_Form
 {
     /**
@@ -32,6 +33,18 @@ class User_Surveys_Block_Adminhtml_Results_View_Form extends Mage_Adminhtml_Bloc
      */
     protected function _prepareForm()
     {
+        $id= $this->getRequest()->getParam('userId');
+
+        $formid= $this->getRequest()->getParam('formId');
+
+        $formModel= Mage::getModel('user_surveys/forms')->load($formid);
+        $formName= $formModel->getFormName();
+        //echo "<pre>"; print($name); echo "</pre>"; die("here...1!!");
+
+        $collection = Mage::getModel('customer/customer')->getCollection()->addAttributeToFilter('entity_id', array('eq' => $id))
+        ->addAttributeToSelect('email');
+        $user_data = $collection->getData();
+        $customerEmail = $user_data[0]['email'];
         $model = Mage::registry('viewModel');
 				
 		$model->getSelect()
@@ -50,27 +63,28 @@ class User_Surveys_Block_Adminhtml_Results_View_Form extends Mage_Adminhtml_Bloc
         $fieldset = $form->addFieldset(
             'general',
             array(
-                'legend' => $this->__('User Reviews')
+                'legend' => $this->__('User Reviews :   ' .$customerEmail .'<br/>' .'Form Name :  ' . $formName)
             )
         );
+        
+        
         
         $data= $model->getData();
         
         foreach ($data as $key=>$value){
-        	$text = $value['surveys_questions'].' :: '.$value['value'];
-        	$fieldset->addField($value['question_id'], 'text', array(
+        	$text = 'Question : '. $value['surveys_questions'].
+        			' Answer : '.$value['value'];
+        	$a= nl2br($text);
+        	 $fieldset->addField($value['question_id'], 'text', array(
         			'name'     => 'value'.$value['question_id'],
         			'value'    => $value['value'],
-        			'label'    => Mage::helper('user_surveys')->__($text),
+        			'label'    => Mage::helper('user_surveys')->__($a),
         			'title'    => Mage::helper('user_surveys')->__($value['question_id']),
         			'style'    => 'display:none;',
         			'required' => false,        			
         	));
         }
-
-
-        //die('HERRE');
-        
+  
         $form->setValues($model->getData());
         $this->setForm($form);
         
@@ -78,5 +92,5 @@ class User_Surveys_Block_Adminhtml_Results_View_Form extends Mage_Adminhtml_Bloc
     }
 
 }
-
+/*End by Ankush*/
 

@@ -45,7 +45,6 @@ class User_Surveys_Block_Adminhtml_Results_Grid extends Mage_Adminhtml_Block_Wid
      */
     protected function _prepareCollection()
     {   
-
         $id = $this->getRequest()->getParam('id');
         $model =  Mage::getModel('user_surveys/forms')->load($id);
         $formId= $model->getId();

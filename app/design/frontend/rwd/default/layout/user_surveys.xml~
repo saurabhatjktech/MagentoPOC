@@ -35,14 +35,7 @@
                 <prepare>true</prepare>
             </action>
         </reference>
-		<reference name="top.links">
-             <action method="addLink" translate="label title" module="user_surveys">
-                <label>Surveys</label>
-                <url>surveys</url>
-                <title>Surveys</title>
-                <prepare>true</prepare>
-            </action>
-        </reference>
+		
     </default>
     <user_surveys_index_index translate="label">
         <label>Surveys List Page</label>
