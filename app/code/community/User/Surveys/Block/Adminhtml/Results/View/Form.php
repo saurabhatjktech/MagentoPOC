@@ -72,11 +72,11 @@ class User_Surveys_Block_Adminhtml_Results_View_Form extends Mage_Adminhtml_Bloc
         foreach ($data as $key=>$value){
         	$text = 'Question : '. $value['surveys_questions'].
         			' Answer : '.$value['value'];
-        	$a= nl2br($text);
-        	 $fieldset->addField($value['question_id'], 'text', array(
+        	//$text = nl2br($text);
+        	$fieldset->addField($value['question_id'], 'text', array(
         			'name'     => 'value'.$value['question_id'],
         			'value'    => $value['value'],
-        			'label'    => Mage::helper('user_surveys')->__($a),
+        			'label'    => Mage::helper('user_surveys')->__($text),
         			'title'    => Mage::helper('user_surveys')->__($value['question_id']),
         			'style'    => 'display:none;',
         			'required' => false,        			

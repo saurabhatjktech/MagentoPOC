@@ -127,6 +127,7 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
     public function saveAction()
     {
         $redirectPath   = '*/*';
+        $message = 'Created';
         $redirectParams = array();
 
         // check if data sent
@@ -141,6 +142,7 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
             $formId = $this->getRequest()->getParam('id');
             if ($formId) {
                 $model->load($formId);
+                $message = 'Updated';
             }
 
             // Getting questions id in array
@@ -165,7 +167,7 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
             
             // display success message
             $this->_getSession()->addSuccess(
-            Mage::helper('user_surveys')->__('Survey Form Edited Sucessfully'));
+            Mage::helper('user_surveys')->__('Survey Form ' .$message . ' Sucessfully'));
         }
         $this->_redirect($redirectPath, $redirectParams);
     }
