@@ -37,7 +37,7 @@ class User_Surveys_Block_Adminhtml_Results_View  extends Mage_Adminhtml_Block_Wi
      *
      */
 	public function __construct()
-	{die('adas');
+	{
 		$this->_objectId   = 'id';
 		$this->_blockGroup = 'user_surveys';
 		$this->_controller = 'adminhtml_results';

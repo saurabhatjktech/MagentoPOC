@@ -78,20 +78,34 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
         $questionIds = explode(',',$model['questions_id']);
         $question = array();
         $type= array();
+        $options= array();
+        $opt= array();
+        //echo "<pre>"; print_r($questionIds); echo "</pre>"; die("HERE");
+
         foreach ($questionIds as $key=> $value){
-        	$collection = Mage::getModel('user_surveys/questions')->load($key);        
-        	$question[$key] = $collection->getQuestions();
+            $collection = Mage::getModel('user_surveys/questions')->load($value);        
+        	$question[$value] = $collection->getQuestions();
             
-            $type[$key] = $collection->getType();
-            //echo "</pre>"; print_r($question); echo "</pre>";   
+            $type[$value] = $collection->getType();
+
+            $options[$value] = $collection->getOptions();
+            
         }
-        //die("HEre");
+        //echo "<pre>"; print_r($type); echo "</pre>";
+        //echo "<pre>"; print_r($type); echo "</pre>"; //die("HERE");  
         //$type[]=  $collection->getType();
+        foreach ($options as $key => $value) {
+            if($value) {
+                $opt[$key] = explode(',',$value);
+            }
+        }
 
-
-
+        // /echo "<pre>"; print_r($opt); echo "</pre>"; //die("HERE");  
+        //die("HEre");
+        
      	Mage::register('questions', $question);
      	Mage::register('type', $type);
+        Mage::register('options', $opt);
 
         if (!$model->getId()) {
             return $this->_forward('noRoute');
@@ -118,8 +132,8 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
     
     public function postAction()
     {	
-    	
-    	$post = $this->getRequest()->getPost();
+        $post = $this->getRequest()->getPost();
+    	echo "<pre>"; print_r($post); echo "</pre>"; die("HERE");
 
     	if ( $post ) {
             $model = Mage::getModel('user_surveys/surveys');
@@ -144,4 +158,8 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
         $this->_redirect('*/*/index');
     }
     /*End By Ankush */
+
+    /*public function idReturnAction () {
+
+    }*/
 }
