@@ -33,20 +33,8 @@ class User_Surveys_Block_Adminhtml_Results_View_Form extends Mage_Adminhtml_Bloc
      */
     protected function _prepareForm()
     {
-        $id= $this->getRequest()->getParam('userId');
-
-        $formid= $this->getRequest()->getParam('formId');
-
-        $formModel= Mage::getModel('user_surveys/forms')->load($formid);
-        $formName= $formModel->getFormName();
-        //echo "<pre>"; print($name); echo "</pre>"; die("here...1!!");
-
-        $collection = Mage::getModel('customer/customer')->getCollection()->addAttributeToFilter('entity_id', array('eq' => $id))
-        ->addAttributeToSelect('email');
-        $user_data = $collection->getData();
-        $customerEmail = $user_data[0]['email'];
         $model = Mage::registry('viewModel');
-				
+
 		$model->getSelect()
 		->joinLeft(array('que' => 'surveys_questions'),
 				'main_table.question_id = que.id',
@@ -60,30 +48,38 @@ class User_Surveys_Block_Adminhtml_Results_View_Form extends Mage_Adminhtml_Bloc
         ));
         $form->setUseContainer(true);
 
-        $fieldset = $form->addFieldset(
-            'general',
-            array(
-                'legend' => $this->__('User Reviews :   ' .$customerEmail .'<br/>' .'Form Name :  ' . $formName)
-            )
-        );
-       
-        $data= $model->getData();
+        $data = $model->getData();
         
+        $userId = $data[0]['user_id'];
+        $formId = $data[0]['form_id'];
+        
+        $formModel= Mage::getModel('user_surveys/forms')->load($formId);
+        $formName= $formModel->getFormName();
+        
+        $collection = Mage::getModel('customer/customer')->getCollection()->addAttributeToFilter('entity_id', array('eq' => $userId))
+        ->addAttributeToSelect('email');
+        $user_data = $collection->getData();
+        $customerEmail = $user_data[0]['email'];
+        $fieldset = $form->addFieldset(
+        		'general',
+        		array(
+        				'legend' => $this->__('User Reviews :   ' .$customerEmail .'<br/>' .'Form Name :  ' . $formName)
+        		)
+        );
         foreach ($data as $key=>$value){
-        	$text = 'Question : '. $value['surveys_questions'].
+        	$legendText = 'Question : '. $value['surveys_questions'].
         			' Answer : '.$value['value'];
-        	//$text = nl2br($text);
         	$fieldset->addField($value['question_id'], 'text', array(
         			'name'     => 'value'.$value['question_id'],
         			'value'    => $value['value'],
-        			'label'    => Mage::helper('user_surveys')->__($text),
+        			'label'    => Mage::helper('user_surveys')->__($legendText),
         			'title'    => Mage::helper('user_surveys')->__($value['question_id']),
         			'style'    => 'display:none;',
         			'required' => false,        			
         	));
         }
   
-        $form->setValues($model->getData());
+        $form->setValues($data);
         $this->setForm($form);
         
         return parent::_prepareForm();

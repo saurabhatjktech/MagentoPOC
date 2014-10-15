@@ -44,7 +44,6 @@ class User_Surveys_Block_Adminhtml_Surveys_Grid extends Mage_Adminhtml_Block_Wid
     protected function _prepareCollection()
     {
         $collection = Mage::getModel('user_surveys/forms')->getResourceCollection();
-        //echo "<pre>";var_dump($collection);echo "</pre>";
 
         $this->setCollection($collection);
         return parent::_prepareCollection();

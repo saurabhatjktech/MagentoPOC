@@ -33,6 +33,6 @@ class User_Surveys_Block_Adminhtml_Results extends Mage_Adminhtml_Block_Widget_G
         $this->_headerText = Mage::helper('user_surveys')->__('Surveys Result');
 
         parent::__construct();
-
+        $this->_removeButton('add');
     }
 }

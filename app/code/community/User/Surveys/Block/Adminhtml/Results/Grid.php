@@ -45,17 +45,8 @@ class User_Surveys_Block_Adminhtml_Results_Grid extends Mage_Adminhtml_Block_Wid
      */
     protected function _prepareCollection()
     {   
-        $id = $this->getRequest()->getParam('id');
-        $model =  Mage::getModel('user_surveys/forms')->load($id);
-        $formId= $model->getId();
-        $collection = Mage::getResourceModel('user_surveys/surveys_collection')
-        ->addFieldToFilter('form_id', array('eq' => $formId));    
-    
-        $collection->getSelect()
-        ->joinLeft(array('cus' => 'customer_entity'),
-               'main_table.user_id = cus.entity_id',
-               array('customer_email' => 'email'))
-        ->group('user_id');
+    	$collection = Mage::registry('collection');
+ 
 
         $this->setCollection($collection);
 
@@ -80,10 +71,33 @@ class User_Surveys_Block_Adminhtml_Results_Grid extends Mage_Adminhtml_Block_Wid
             'index'     => 'user_id',
         ));
 
+        $this->addColumn('form_id', array(
+        		'header'    => Mage::helper('user_surveys')->__('Form Id'),
+        		'index'     => 'form_id',
+        ));
+        
         $this->addColumn('User Email', array(
             'header'    => Mage::helper('user_surveys')->__('User Email'),
             'index'     => 'customer_email',
         ));
+        
+        $this->addColumn('action', array(
+        	'header'    => Mage::helper('user_surveys')->__('User Review'),
+        	'width'     => '200px',
+        	'type'      => 'action',
+        	'getter'    => 'getId',
+        	'actions'   => array(array(
+        	'caption'   => Mage::helper('user_surveys')->__('View Feedback'),
+        	'url'    	=> array('base' => '*/*/view'),
+        	'field'   	=> 'id'
+        ),
+        	),
+        	'filter'    => false,
+        	'sortable'  => false,
+        	'index'     => 'stores',
+        	'is_system'	=> true,
+        )
+        	);
         return parent::_prepareColumns();
     }
 
@@ -94,7 +108,7 @@ class User_Surveys_Block_Adminhtml_Results_Grid extends Mage_Adminhtml_Block_Wid
      */
     public function getRowUrl($row)
     {
-        return $this->getUrl('*/*/view', array('userId' => $row->getUserId(), 'formId' => $row->getFormId()));
+        return $this->getUrl('*/*/view', array('id' => $row->getId()));
     }
 
     /**

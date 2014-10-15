@@ -61,8 +61,11 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
      */
     
     public function viewAction()
-    {
-    	
+    {	
+    	if( !Mage::getSingleton( 'customer/session' )->isLoggedIn() )
+{                  
+    $this->_redirect('customer/account/login/'); 
+}
         $formId = $this->getRequest()->getParam('id');
         if (!$formId) {
             return $this->_forward('noRoute');

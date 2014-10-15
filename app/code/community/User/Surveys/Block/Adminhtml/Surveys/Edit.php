@@ -79,7 +79,7 @@ class User_Surveys_Block_Adminhtml_Surveys_Edit extends Mage_Adminhtml_Block_Wid
             return Mage::helper('user_surveys')->__("Edit Survey Items",
                  $this->escapeHtml($model->getTitle()));
         } else {
-            return Mage::helper('user_surveys')->__('Edit Form');
+            return Mage::helper('user_surveys')->__('New Survey Form');
         }
     }
 }
