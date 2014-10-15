@@ -90,7 +90,7 @@ class User_Surveys_Block_Adminhtml_Questions_Edit_Form extends Mage_Adminhtml_Bl
             'name'     => 'Field option(s)',
             'label'    => Mage::helper('user_surveys')->__('Field option(s) if any'),
             'title'    => Mage::helper('user_surveys')->__('Field option(s)'),
-            'note' => Mage::helper('user_surveys')->__('Multiple values should be separated with comma "," '),
+            'note' => Mage::helper('user_surveys')->__('Multiple values should be separated with comma "," and Should Not CONTAIN SPACES. '),
         ));
 
         // Add the fields that we want to be editable.

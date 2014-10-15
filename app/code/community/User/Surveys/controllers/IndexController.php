@@ -63,6 +63,12 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
     
     public function viewAction()
     {
+            $customerSession = Mage::getSingleton('customer/session');
+
+            if (!$customerSession->isLoggedIn()) {
+                $this->_redirect('customer/account/login');
+            }
+
         $formId = $this->getRequest()->getParam('id');
         if (!$formId) {
             return $this->_forward('noRoute');
@@ -133,33 +139,70 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
     public function postAction()
     {	
         $post = $this->getRequest()->getPost();
-    	echo "<pre>"; print_r($post); echo "</pre>"; die("HERE");
-
-    	if ( $post ) {
+        echo "<pre>"; print_r($post); echo "</pre>";
+        
+        $questionIdForCheckBox;
+        if ( $post ) {
             $model = Mage::getModel('user_surveys/surveys');
             foreach ($post as $key => $value) {
-     			$userId= $post['user_id'];
-     			$formId= $post['form_id'];
-     			
+                $userId= $post['user_id'];
+                $formId= $post['form_id'];
+                
                 if (preg_match('/question_/',$key)) {
-             		$que_array = explode("_", $key);
-                	$questionId = $que_array[1];
+                    $que_array = explode("_", $key);
+                	//echo "<pre>"; print_r($que_array[1]); echo "</pre>";
+                    //echo "<pre>"; print_r($value); echo "</pre>";
+                    $questionId = $que_array[1];
                     $model->setQuestionId($questionId);
                     $model->setId(null);
                     $model->setUserId($userId);
                     $model->setFormId($formId);
                     $model->setValue($value);
                     $model->save();
-                }		
-     		}
-     	
+                }
+
+                //getting questionIds for checkbox
+                if (preg_match('/option_/',$key)) {
+                    $checkbox_que_array = explode("--", $key);
+                    $questionIdForCheckBox[] = $checkbox_que_array[1];
+                }
+            }
+            $QuestionIdUnique = array_unique($questionIdForCheckBox);
+            
+            foreach ($post as $keys => $values) {
+                if (preg_match("/option/",$keys)) {
+                    foreach ($QuestionIdUnique as $index => $queIds) {
+                        if (preg_match("/--$queIds/",$keys)) {
+                            $feedback[$queIds][] = $values;
+                        }
+                    }
+                }
+            }
+            
+            foreach ($feedback as $key => $value) {
+                $data = implode(",", $value);
+                $newarr['checkbox_question-'.$key] = $data;
+            }
+            echo "<pre>"; print_r($newarr); echo "</pre>";
+
+            //saving checkbox values
+            foreach ($newarr as $key => $value) {
+                $userId= $post['user_id'];
+                $formId= $post['form_id'];
+
+                $que_array = explode("-", $key);
+                $questionId = $que_array[1];
+                
+                $model->setQuestionId($questionId);
+                $model->setId(null);
+                $model->setUserId($userId);
+                $model->setFormId($formId);
+                $model->setValue($value);
+                $model->save();
+            }            
     	}
         Mage::getSingleton('core/session')->addSuccess("Thanks for participating in Survey.");
         $this->_redirect('*/*/index');
     }
-    /*End By Ankush */
 
-    /*public function idReturnAction () {
-
-    }*/
 }
