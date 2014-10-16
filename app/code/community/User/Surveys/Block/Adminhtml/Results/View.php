@@ -42,40 +42,7 @@ class User_Surveys_Block_Adminhtml_Results_View  extends Mage_Adminhtml_Block_Wi
 		$this->_blockGroup = 'user_surveys';
 		$this->_controller = 'adminhtml_results';
 	
-		parent::__construct();
-	
-		$this->_formScripts[] = "
-            function toggleEditor() {
-                if (tinyMCE.getInstanceById('page_content') == null) {
-                    tinyMCE.execCommand('mceAddControl', false, 'page_content');
-                } else {
-                    tinyMCE.execCommand('mceRemoveControl', false, 'page_content');
-                }
-            }
-	
-            function saveAndContinueEdit(){
-                editForm.submit($('edit_form').action+'back/edit/');
-            }
-        ";
+	parent::__construct();
+		
 	}
-	
-	
-	
-	/**
-	 * Retrieve text for header element depending on loaded page
-	 *
-	 * @return string
-	 */
-	public function getHeaderText()
-	{
-		$model = Mage::helper('user_surveys')->getSurveysItemInstance();
-		if ($model->getId()) {
-			return Mage::helper('user_surveys')->__("View Result Items",
-					$this->escapeHtml($model->getTitle()));
-		} else {
-			return Mage::helper('user_surveys')->__('View Form');
-		}
-	}
-
-
 }

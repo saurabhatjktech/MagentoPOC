@@ -23,6 +23,7 @@
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
+/* Start By Ankush Kumar*/
 class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
 {
     /**
@@ -75,8 +76,6 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
         
         $model = Mage::getModel('user_surveys/forms');
         $model->load($formId);
-        
-        /* Start By Ankush*/
         
         $questionIds = explode(',',$model['questions_id']);
         $question = array();
@@ -136,5 +135,5 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
         Mage::getSingleton('core/session')->addSuccess("Thanks for participating in Survey.");
         $this->_redirect('*/*/index');
     }
-    /*End By Ankush */
+    /*End By Ankush Kumar*/
 }

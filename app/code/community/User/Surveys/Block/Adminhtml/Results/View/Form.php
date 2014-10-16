@@ -23,7 +23,7 @@
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
- /*Start by Ankush*/
+ /*Start by Ankush Kumar*/
 class User_Surveys_Block_Adminhtml_Results_View_Form extends Mage_Adminhtml_Block_Widget_Form
 {
     /**
@@ -66,6 +66,7 @@ class User_Surveys_Block_Adminhtml_Results_View_Form extends Mage_Adminhtml_Bloc
         				'legend' => $this->__('User Reviews :   ' .$customerEmail .'<br/>' .'Form Name :  ' . $formName)
         		)
         );
+        
         foreach ($data as $key=>$value){
         	$legendText = 'Question : '. $value['surveys_questions'].
         			' Answer : '.$value['value'];
@@ -86,5 +87,5 @@ class User_Surveys_Block_Adminhtml_Results_View_Form extends Mage_Adminhtml_Bloc
     }
 
 }
-/*End by Ankush*/
+/*End by Ankush Kumar*/
 

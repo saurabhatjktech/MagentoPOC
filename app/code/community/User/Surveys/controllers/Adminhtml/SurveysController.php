@@ -267,11 +267,10 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
     {
         $this->_title($this->__('Feedbacks'))
              ->_title($this->__('Manage Feedbacks'));
-
+	
 		$id = $this->getRequest()->getParam('id');
         $model =  Mage::getModel('user_surveys/forms')->load($id);
         $formId= $model->getId();
-        Mage::register('formId',$formId);
   
         $collection = Mage::getResourceModel('user_surveys/surveys_collection')
         ->addFieldToFilter('form_id', array('eq' => $formId));    
@@ -281,12 +280,16 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
                          'main_table.user_id = cus.entity_id',
                    array('customer_email' => 'email'))
         ->group('user_id');
+     
+        /*Start By Ankush*/
         Mage::register('collection', $collection);
-		$this->_initAction();
-        $this->renderLayout();
+        /*End By Ankush*/
         
+		$this->_initAction();
+        $this->renderLayout();    
     }
     
+    /* Start By Ankush*/
     public function viewAction()
     {
     	$this->_title($this->__('View'))
@@ -294,6 +297,7 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
         $id = $this->getRequest()->getParam('id');
         $model = Mage::getModel('user_surveys/surveys');
         $model->load($id);        
+        
         $formId= $model->getFormId();
         $userId= $model->getUserId();
         
@@ -301,9 +305,11 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
         $models->addFieldToFilter('user_id', array('eq' => $userId));
         $models->addFieldToFilter('form_id', array('eq' => $formId));
         $models->load();
+        
 		Mage::register('viewModel', $models); 
          
         $this->_initAction();
         $this->renderLayout();
     }
+    /*End By Ankush*/
 }

@@ -37,7 +37,6 @@ class User_Surveys_Block_Adminhtml_Surveys_Edit_Form extends Mage_Adminhtml_Bloc
         $model = Mage::getModel('user_surveys/forms')->load($formId);
         $surveys_item = Mage::registry('surveys_item');
 
-        //$questions_ids = explode(',',$surveys_item['questions_id']);
         $questions_ids = explode(',',$surveys_item['questions_id']);
         
         $collection = Mage::getModel('user_surveys/questions')->getCollection()->load();
@@ -92,6 +91,5 @@ class User_Surveys_Block_Adminhtml_Surveys_Edit_Form extends Mage_Adminhtml_Bloc
 
         return parent::_prepareForm();
     }
-
 }
 
