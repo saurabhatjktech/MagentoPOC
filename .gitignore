@@ -1,3 +1,6 @@
-/var/cache
-/var/session
+/var/
+app/etc/local.xml
+.buildpath
+.settings/
+media/
 media/catalog/product/cache
