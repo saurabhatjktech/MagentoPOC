@@ -1,6 +1,6 @@
 /var/
-app/etc/local.xml
 .buildpath
 .settings/
 media/
 media/catalog/product/cache
+app/etc/local.xml
