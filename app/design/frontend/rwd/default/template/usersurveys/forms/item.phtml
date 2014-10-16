@@ -41,6 +41,7 @@
                 <input name="form_id" type="hidden" value="<?php echo Mage::helper('user_surveys')->__($this->escapeHtml($_surveysItem->getId())) ?>" />
             </li>
             <li>
+                <?php echo "<pre>"; print_r($this->getCollection()->getData()); echo "</pre>"; die("HERE"); ?>
                 <?php $que= Mage::registry('questions');
                       $type= Mage::registry('type');
                       $options= Mage::registry('options');

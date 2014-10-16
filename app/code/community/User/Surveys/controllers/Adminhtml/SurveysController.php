@@ -131,7 +131,7 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
 
         // check if data sent
         $data = $this->getRequest()->getPost();
-        
+        echo "<pre>"; print_r($data); echo "</pre>"; 
         if ($data) {
             $data = $this->_filterPostData($data);
             // init model and set data
@@ -156,13 +156,19 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
             //getting form name from post method
             $formName= $data['form_name'];
 
+            $status= $data['status'];
+            //echo "<pre>"; print_r($is_active); echo "</pre>"; die("active value");
+
             // Saving to Model
             $model->setQuestionsId($ids);
             $model->setFormName($formName);
             
+            $model->setStatus($status);
+
+            //echo "<pre>"; print_r($model); echo "</pre>"; die("Hereeeee");
             //saving into model
             $model->save();
-            
+            //echo "<pre>"; print_r($model); echo "</pre>"; die("HEREEEE");
             // display success message
             $this->_getSession()->addSuccess(
             Mage::helper('user_surveys')->__('Survey Form Edited Sucessfully'));

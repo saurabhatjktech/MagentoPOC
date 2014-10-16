@@ -68,6 +68,22 @@ class User_Surveys_Block_Adminhtml_Surveys_Grid extends Mage_Adminhtml_Block_Wid
             'index'     => 'form_name',
         ));
 
+        // $this->addColumn('active', array(
+        //     'header'    => Mage::helper('user_surveys')->__('isActive'),
+        //     'index'     => 'active',
+        //     'width'     => '250px',
+        // ));
+
+        $this->addColumn('status',
+            array(
+                'header'=> Mage::helper('user_surveys')->__('Status'),
+                'width' => '250px',
+                'index' => 'status',
+                'type'  => 'options',
+                'options' => Mage::getSingleton('user_surveys/surveys')->getOptionArray(),
+        ));
+
+
         $this->addColumn('action',
             array(
                 'header'    => Mage::helper('user_surveys')->__('Feedback'),

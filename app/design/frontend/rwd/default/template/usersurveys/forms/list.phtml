@@ -31,14 +31,16 @@
 
 <div class="container-fluid">
     <?php foreach ($this->getCollection() as $formsItem): ?>
-        <div id="item_<?php echo $formsItem->getId() ?>" class="page-title">
+    <?//php echo "<pre>"; print_r($formsItem['isActive']); echo "</pre>"; ?>
+        <?php if($formsItem['active'] == 1) {?>
+            <div id="item_<?php echo $formsItem->getId() ?>" class="page-title">
             <h2>
                 <a href="<?php echo $this->getItemUrl($formsItem) ?>">
                     <?php echo $this->escapeHtml($formsItem->getFormName()) ?>
                 </a>
             </h2>
         </div>
-    <?php endforeach; ?>
+    <?php } endforeach; ?>
 </div>
 
 <?php echo $this->getPager() ?>

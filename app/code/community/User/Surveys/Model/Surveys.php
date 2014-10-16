@@ -25,6 +25,8 @@
  */
 class User_Surveys_Model_Surveys extends Mage_Core_Model_Abstract
 {
+    const STATUS_ENABLED    = 1;
+    const STATUS_DISABLED   = 0;
     /**
      * Define resource model
      */
@@ -45,5 +47,18 @@ class User_Surveys_Model_Surveys extends Mage_Core_Model_Abstract
             $this->setData('created_at', Varien_Date::now());
         }
         return $this;
+    }
+
+    /**
+     * Retrieve option array
+     *
+     * @return array
+     */
+    public function getOptionArray()
+    {
+        return array(
+            self::STATUS_ENABLED    => Mage::helper('user_surveys')->__('Enabled'),
+            self::STATUS_DISABLED   => Mage::helper('user_surveys')->__('Disabled')
+        );
     }
 }

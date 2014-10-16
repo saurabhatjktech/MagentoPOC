@@ -35,6 +35,7 @@ class User_Surveys_Block_Adminhtml_Surveys_Edit_Form extends Mage_Adminhtml_Bloc
         // $model = Mage::helper('user_surveys')->getEventsItemInstance();
         $formId = Mage::registry('formId');
         $model = Mage::getModel('user_surveys/forms')->load($formId);
+        //echo "<pre>"; print_r($model['active']); echo "</pre>"; die("Hereeeee");
         $surveys_item = Mage::registry('surveys_item');
 
         //$questions_ids = explode(',',$surveys_item['questions_id']);
@@ -69,6 +70,12 @@ class User_Surveys_Block_Adminhtml_Surveys_Edit_Form extends Mage_Adminhtml_Bloc
             'title'    => Mage::helper('user_surveys')->__('Form Name'),
             'required' => false,
             
+        ));
+        
+        $fieldset->addField('status', 'select', array(
+            'name'     => 'status',
+            'label'    => Mage::helper('user_surveys')->__('Status'),
+            'values' => Mage::getSingleton('user_surveys/surveys')->getOptionArray(),
         ));
         
         foreach ($result as $value) {
