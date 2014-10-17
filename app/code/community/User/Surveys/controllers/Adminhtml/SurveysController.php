@@ -157,17 +157,49 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
             $formName= $data['form_name'];
 
             $status= $data['status'];
-            //echo "<pre>"; print_r($is_active); echo "</pre>"; die("active value");
-
-            // Saving to Model
-            $model->setQuestionsId($ids);
-            $model->setFormName($formName);
             
-            $model->setStatus($status);
+            $visibility= $data['visibility'];
+            //echo "<pre>"; print_r($visibility); echo "</pre>"; 
 
-            //echo "<pre>"; print_r($model); echo "</pre>"; die("Hereeeee");
-            //saving into model
-            $model->save();
+            if ($visibility == 1) {
+                $collection = Mage::getModel('user_surveys/forms')
+                ->getCollection()
+                ->addFieldToFilter('visibility', array('eq' => 1))
+                ->getData();
+
+                if ($collection) {
+                    foreach ($collection as $key => $value) {
+                        $id= $value['id'];
+                    }
+                    $model->load($id);
+                    $model->setVisibility(0)->save();
+                }
+
+                if($formId) {
+                    $model->load($formId);
+                }
+                else {
+                    $model = Mage::getModel('user_surveys/forms');
+                }
+                $model->setQuestionsId($ids);
+                $model->setFormName($formName);
+                $model->setStatus($status);
+                $model->setVisibility($visibility);
+                $model->save();                
+                // $model->setStatus(1);
+            }
+            else {
+                // Saving to Model
+                $model->setQuestionsId($ids);
+                $model->setFormName($formName);
+                
+                $model->setStatus($status);
+                $model->setVisibility($visibility);
+                
+                //echo "<pre>"; print_r($model); echo "</pre>"; die("Hereeeee");
+                //saving into model
+                $model->save();
+            }
             //echo "<pre>"; print_r($model); echo "</pre>"; die("HEREEEE");
             // display success message
             $this->_getSession()->addSuccess(
