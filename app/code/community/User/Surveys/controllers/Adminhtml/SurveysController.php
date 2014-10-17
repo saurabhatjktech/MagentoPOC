@@ -79,7 +79,9 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
         // 1. instance surveys model
         /* @var $model User_Surveys_Model_Item */
         $model = Mage::getModel('user_surveys/forms');
-        
+        /*$name = Mage::getSingleton('user/surveys') ->getAttribute('catalog_product', 'name')*/
+        /*$model = Mage::getModel('user_surveys/forms');*/
+
         // 2. if exists id, check it and load data
         $formId = $this->getRequest()->getParam('id');
         if ($formId) {
@@ -125,12 +127,11 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
     public function saveAction()
     {
         $redirectPath   = '*/*';
-        $message = 'Created';
         $redirectParams = array();
 
         // check if data sent
         $data = $this->getRequest()->getPost();
-        
+        echo "<pre>"; print_r($data); echo "</pre>"; 
         if ($data) {
             $data = $this->_filterPostData($data);
             // init model and set data
@@ -140,7 +141,6 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
             $formId = $this->getRequest()->getParam('id');
             if ($formId) {
                 $model->load($formId);
-                $message = 'Updated';
             }
 
             // Getting questions id in array
@@ -156,19 +156,58 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
             //getting form name from post method
             $formName= $data['form_name'];
 
-            // Saving to Model
-            $model->setQuestionsId($ids);
-            $model->setFormName($formName);
+            $status= $data['status'];
             
-            //saving into model
-            $model->save();
-            
+            $visibility= $data['visibility'];
+            //echo "<pre>"; print_r($visibility); echo "</pre>"; 
+
+            if ($visibility == 1) {
+                $collection = Mage::getModel('user_surveys/forms')
+                ->getCollection()
+                ->addFieldToFilter('visibility', array('eq' => 1))
+                ->getData();
+
+                if ($collection) {
+                    foreach ($collection as $key => $value) {
+                        $id= $value['id'];
+                    }
+                    $model->load($id);
+                    $model->setVisibility(0)->save();
+                }
+
+                if($formId) {
+                    $model->load($formId);
+                }
+                else {
+                    $model = Mage::getModel('user_surveys/forms');
+                }
+                $model->setQuestionsId($ids);
+                $model->setFormName($formName);
+                $model->setStatus($status);
+                $model->setVisibility($visibility);
+                $model->save();                
+                // $model->setStatus(1);
+            }
+            else {
+                // Saving to Model
+                $model->setQuestionsId($ids);
+                $model->setFormName($formName);
+                
+                $model->setStatus($status);
+                $model->setVisibility($visibility);
+                
+                //echo "<pre>"; print_r($model); echo "</pre>"; die("Hereeeee");
+                //saving into model
+                $model->save();
+            }
+            //echo "<pre>"; print_r($model); echo "</pre>"; die("HEREEEE");
             // display success message
             $this->_getSession()->addSuccess(
-            Mage::helper('user_surveys')->__('Survey Form ' .$message . ' Sucessfully'));
+            Mage::helper('user_surveys')->__('Survey Form Edited Sucessfully'));
         }
         $this->_redirect($redirectPath, $redirectParams);
     }
+
 
     /**
      * Delete action

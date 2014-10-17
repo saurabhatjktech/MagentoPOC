@@ -23,7 +23,6 @@
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-/* Start By Ankush Kumar*/
 class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
 {
     /**
@@ -31,6 +30,7 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
      */
     public function preDispatch()
     {
+
         parent::preDispatch();
 
         if (!Mage::helper('user_surveys')->isEnabled()) {
@@ -53,7 +53,7 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
             }
             $listBlock->setCurrentPage($currentPage);
         }
-		
+        
         $this->renderLayout();
     }
 
@@ -63,9 +63,12 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
     
     public function viewAction()
     {
-    	if( !Mage::getSingleton( 'customer/session' )->isLoggedIn()){
-    		$this->_redirect('customer/account/login/');
-    	}
+            $customerSession = Mage::getSingleton('customer/session');
+
+            if (!$customerSession->isLoggedIn()) {
+                $this->_redirect('customer/account/login');
+            }
+
         $formId = $this->getRequest()->getParam('id');
         if (!$formId) {
             return $this->_forward('noRoute');
@@ -76,14 +79,40 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
         $model = Mage::getModel('user_surveys/forms');
         $model->load($formId);
         
+        /* Start By Ankush*/
+        
         $questionIds = explode(',',$model['questions_id']);
         $question = array();
-        foreach ($questionIds as $id){
-        	$collection = Mage::getModel('user_surveys/questions')->load($id);        
-        	$question[$id] = $collection->getQuestions();
+        $type= array();
+        $options= array();
+        $opt= array();
+        //echo "<pre>"; print_r($questionIds); echo "</pre>"; die("HERE");
+
+        foreach ($questionIds as $key=> $value){
+            $collection = Mage::getModel('user_surveys/questions')->load($value);        
+            $question[$value] = $collection->getQuestions();
+            
+            $type[$value] = $collection->getType();
+
+            $options[$value] = $collection->getOptions();
+            
         }
-     	Mage::register('questions', $question);
-     	
+        //echo "<pre>"; print_r($type); echo "</pre>";
+        //echo "<pre>"; print_r($type); echo "</pre>"; //die("HERE");  
+        //$type[]=  $collection->getType();
+        foreach ($options as $key => $value) {
+            if($value) {
+                $opt[$key] = explode(',',$value);
+            }
+        }
+
+        // /echo "<pre>"; print_r($opt); echo "</pre>"; //die("HERE");  
+        //die("HEre");
+        
+        Mage::register('questions', $question);
+        Mage::register('type', $type);
+        Mage::register('options', $opt);
+
         if (!$model->getId()) {
             return $this->_forward('noRoute');
         }
@@ -108,31 +137,72 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
     }
     
     public function postAction()
-    {	
-    	
-    	$post = $this->getRequest()->getPost();
-
-    	if ( $post ) {
+    {   
+        $post = $this->getRequest()->getPost();
+        echo "<pre>"; print_r($post); echo "</pre>";
+        
+        $questionIdForCheckBox;
+        if ( $post ) {
             $model = Mage::getModel('user_surveys/surveys');
             foreach ($post as $key => $value) {
-     			$userId= $post['user_id'];
-     			$formId= $post['form_id'];
-     			
+                $userId= $post['user_id'];
+                $formId= $post['form_id'];
+                
                 if (preg_match('/question_/',$key)) {
-             		$que_array = explode("_", $key);
-                	$questionId = $que_array[1];
+                    $que_array = explode("_", $key);
+                    //echo "<pre>"; print_r($que_array[1]); echo "</pre>";
+                    //echo "<pre>"; print_r($value); echo "</pre>";
+                    $questionId = $que_array[1];
                     $model->setQuestionId($questionId);
                     $model->setId(null);
                     $model->setUserId($userId);
                     $model->setFormId($formId);
                     $model->setValue($value);
                     $model->save();
-                }		
-     		}
-     	
-    	}
+                }
+
+                //getting questionIds for checkbox
+                if (preg_match('/option_/',$key)) {
+                    $checkbox_que_array = explode("--", $key);
+                    $questionIdForCheckBox[] = $checkbox_que_array[1];
+                }
+            }
+            $QuestionIdUnique = array_unique($questionIdForCheckBox);
+            
+            foreach ($post as $keys => $values) {
+                if (preg_match("/option/",$keys)) {
+                    foreach ($QuestionIdUnique as $index => $queIds) {
+                        if (preg_match("/--$queIds/",$keys)) {
+                            $feedback[$queIds][] = $values;
+                        }
+                    }
+                }
+            }
+            
+            foreach ($feedback as $key => $value) {
+                $data = implode(",", $value);
+                $newarr['checkbox_question-'.$key] = $data;
+            }
+            echo "<pre>"; print_r($newarr); echo "</pre>";
+
+            //saving checkbox values
+            foreach ($newarr as $key => $value) {
+                $userId= $post['user_id'];
+                $formId= $post['form_id'];
+
+                $que_array = explode("-", $key);
+                $questionId = $que_array[1];
+                
+                $model->setQuestionId($questionId);
+                $model->setId(null);
+                $model->setUserId($userId);
+                $model->setFormId($formId);
+                $model->setValue($value);
+                $model->save();
+            }            
+        }
         Mage::getSingleton('core/session')->addSuccess("Thanks for participating in Survey.");
         $this->_redirect('*/*/index');
     }
-    /*End By Ankush Kumar*/
+
 }

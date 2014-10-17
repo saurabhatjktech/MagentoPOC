@@ -35,8 +35,10 @@ class User_Surveys_Block_Adminhtml_Surveys_Edit_Form extends Mage_Adminhtml_Bloc
         // $model = Mage::helper('user_surveys')->getEventsItemInstance();
         $formId = Mage::registry('formId');
         $model = Mage::getModel('user_surveys/forms')->load($formId);
+        //echo "<pre>"; print_r($model['active']); echo "</pre>"; die("Hereeeee");
         $surveys_item = Mage::registry('surveys_item');
 
+        //$questions_ids = explode(',',$surveys_item['questions_id']);
         $questions_ids = explode(',',$surveys_item['questions_id']);
         
         $collection = Mage::getModel('user_surveys/questions')->getCollection()->load();
@@ -69,6 +71,20 @@ class User_Surveys_Block_Adminhtml_Surveys_Edit_Form extends Mage_Adminhtml_Bloc
             'required' => false,
             
         ));
+
+        $fieldset->addField('status', 'select', array(
+            'name'     => 'status',
+            'label'    => Mage::helper('user_surveys')->__('Status'),
+            'values'   => Mage::getSingleton('user_surveys/surveys')->getOptionArray(),
+        ));
+
+        $fieldset->addField('visibility', 'select', array(
+            'name'     => 'visibility',
+            'label'    => Mage::helper('user_surveys')->__('Visible on frontend'),
+            'values'   => Mage::getSingleton('user_surveys/surveys')->getOptionArray(),
+            'note'     => "Only one form can be enabled at a time.
+            If form is set to enable then pop up of the selected form will be generated on frontend."
+        ));
         
         foreach ($result as $value) {
             $flag = '';
@@ -91,5 +107,6 @@ class User_Surveys_Block_Adminhtml_Surveys_Edit_Form extends Mage_Adminhtml_Bloc
 
         return parent::_prepareForm();
     }
+
 }
 

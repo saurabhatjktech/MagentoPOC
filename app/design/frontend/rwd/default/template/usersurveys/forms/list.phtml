@@ -24,24 +24,22 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<head>
-    <script type="text/javascript" src="<?php echo $this->getSkinUrl('usersurveys/surveys.js');?>"></script>
-</head>
 <div id="surveys_list_messages"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
 <div class="page-title">
     <h1><?php echo Mage::helper('user_surveys')->__('Survey Forms') ?></h1>
 </div>
 
-<div class="surveys_list_view">
+<div class="container-fluid">
     <?php foreach ($this->getCollection() as $formsItem): ?>
-        <div id="item_<?php echo $formsItem->getId() ?>" class="page-title">
+        <?php if($formsItem['status'] == 1) {?>
+            <div id="item_<?php echo $formsItem->getId() ?>" class="page-title">
             <h2>
                 <a href="<?php echo $this->getItemUrl($formsItem) ?>">
                     <?php echo $this->escapeHtml($formsItem->getFormName()) ?>
                 </a>
             </h2>
         </div>
-    <?php endforeach; ?>
+    <?php } endforeach; ?>
 </div>
 
 <?php echo $this->getPager() ?>
