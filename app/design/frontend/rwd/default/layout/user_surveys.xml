@@ -46,6 +46,14 @@
     </default>
     <user_surveys_index_index translate="label">
         <label>Surveys List Page</label>
+        
+        <!-- Add 17-oct-2014 -->
+        <reference name="head">
+        	<action method="addJs"><script>usersurveys/surveys.js</script></action>
+	        <action method="addCss"><script>usersurveys/css/surveys.css</script></action>
+        </reference>
+        <!-- End 17-oct-2014 -->
+        
         <reference name="root">
             <action method="setTemplate">
                 <template>page/2columns-right.phtml</template>
@@ -67,8 +75,13 @@
                 <template>page/2columns-right.phtml</template>
             </action>
         </reference>
-        <reference name="content">
+          <reference name="content">
             <block type="user_surveys/item" name="forms.item" template="usersurveys/forms/item.phtml" />
         </reference>
+        <!--  <reference name="content">
+        	<block type="user_surveys/form" name="ajaxlogin_form" template="usersurveys/forms/form.phtml"></block>
+   		 </reference> -->
+        
     </user_surveys_index_view>
+    
 </layout>

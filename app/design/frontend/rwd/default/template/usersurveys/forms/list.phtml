@@ -24,6 +24,9 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
+<head>
+    <script type="text/javascript" src="<?php echo $this->getSkinUrl('usersurveys/surveys.js');?>"></script>
+</head>
 <div id="surveys_list_messages"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
 <div class="page-title">
     <h1><?php echo Mage::helper('user_surveys')->__('Survey Forms') ?></h1>
