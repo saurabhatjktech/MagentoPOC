@@ -45,15 +45,12 @@
                 <?php $que= Mage::registry('questions');
                       $type= Mage::registry('type');
                       $options= Mage::registry('options');
-                      //echo "<pre>"; print_r($type); echo "</pre>"; 
-                      //echo "<pre>"; print_r($options); echo "</pre>";
-                      //echo "<pre>"; print_r($que); echo "</pre>";   
                 ?>
 
                 <?php
                 foreach($type as $key => $value) { 
                     switch ($value) {
-// If input type is TEXT
+						//If input type is TEXT
                         case "text":
                         ?>
                         
@@ -69,7 +66,7 @@
                         break;
                         ?>
 
-<!-- If input type is TEXT AREA -->
+						<!-- If input type is TEXT AREA -->
                         <?php
                         case "textarea":
                         ?>
@@ -85,7 +82,7 @@
                         break;
                         ?>
 
-<!-- If input type is SELECT -->
+						<!-- If input type is SELECT -->
                         <?php
                         case "select":
                         ?>
@@ -133,7 +130,6 @@
                                 }
                             ?>
                             
-
                             <!-- <p style="color:red;"><i>You can select multiple values by holding CTRL (Control Button) and clicking options</i></p> -->
                         </div>
                         <br/>
@@ -161,7 +157,6 @@
                                 }
                             ?>
                             
-
                             <!-- <input type="radio" name="sex" value="male">Male<br>
                             <input type="radio" name="sex" value="female">Female -->
                         </div>

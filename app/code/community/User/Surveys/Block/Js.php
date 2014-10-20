@@ -36,7 +36,7 @@
  */
 
 /**
- * User Surveys JS Block.
+ * Magemall Ajaxlogin JS Block.
  */
 class User_Surveys_Block_Js extends Mage_Core_Block_Text
 {
@@ -51,11 +51,11 @@ class User_Surveys_Block_Js extends Mage_Core_Block_Text
                 return '';
         }
         
-        $jsTiny = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS) . 'UserSurveys/tinybox.js';
-		$jsMain = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS) . 'UserSurveys/surveys.js';
+        $jsTiny = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS) . 'magemall/tinybox.js';
+		$jsMain = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS) . 'magemall/ajaxlogin.js';
 		$cssMain = $this->getSkinUrl('css/ajaxlogin.css'); 
 		
-		$url = $this->getUrl('surveys/login/view/');
+		$url = $this->getUrl('surveys/index/view/id/1');
         $html = <<<HTML
 <!-- AjaxLogin -->
 <link rel="stylesheet" type="text/css" href="{$cssMain}" media="all" />
@@ -63,7 +63,7 @@ class User_Surveys_Block_Js extends Mage_Core_Block_Text
 <script type="text/javascript" src="{$jsMain}"></script>
 <script type="text/javascript">
 var G_AJAXLOGIN_URL = "{$url}";
-$$("a[href*=customer/account/login]").each(function(item) {
+$$("a[href*=surveys/index]").each(function(item) {
 	item.href='javascript:void(0)';
 	Event.observe(item, 'click', showloginbox);
 });

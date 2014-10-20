@@ -64,13 +64,7 @@ class Magemall_Ajaxlogin_Block_Js extends Mage_Core_Block_Text
 <link rel="stylesheet" type="text/css" href="{$cssMain}" media="all" />
 <script type="text/javascript" src="{$jsTiny}"></script>
 <script type="text/javascript" src="{$jsMain}"></script>
-<script type="text/javascript">
-var G_AJAXLOGIN_URL = "{$url}";
-$$("a[href*=customer/account/login]").each(function(item) {
-	item.href='javascript:void(0)';
-	Event.observe(item, 'click', showloginbox);
-});
-</script>
+
 <!-- End Giko AjaxLogin Code -->
 <!-- Get free from http://magento.luochunhui.com/ajaxlogin.html -->
 HTML;

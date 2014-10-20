@@ -24,11 +24,12 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
+
 <div id="surveys_list_messages"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
 <div class="page-title">
     <h1><?php echo Mage::helper('user_surveys')->__('Survey Forms') ?></h1>
 </div>
-
+<a title="View Survey" href="http://localhost/MagentoPOC/surveys/view/id/1">View Survey</a>
 <div class="container-fluid">
     <?php foreach ($this->getCollection() as $formsItem): ?>
         <?php if($formsItem['status'] == 1) {?>
@@ -43,3 +44,13 @@
 </div>
 
 <?php echo $this->getPager() ?>
+<link media="all" href="http://localhost/MagentoPOC/skin/frontend/rwd/default/css/ajaxlogin.css" type="text/css" rel="stylesheet">
+<script src="http://localhost/MagentoPOC/js/magemall/tinybox.js" type="text/javascript"></script>
+<script src="http://localhost/MagentoPOC/js/magemall/ajaxlogin.js" type="text/javascript"></script>
+<script type="text/javascript">
+var G_AJAXLOGIN_URL = "http://localhost/MagentoPOC/ajaxlogin/login/form/";
+$$("a[href*=surveys/view/id/1]").each(function(item) {
+	item.href='javascript:void(0)';
+	Event.observe(item, 'click', showloginbox);
+});
+</script>

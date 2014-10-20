@@ -39,7 +39,7 @@
 <config>
 	<tabs>
         <magemall translate="label">
-            <label>MageMall </label>
+            <label>MageMall Extensions</label>
             <sort_order>9</sort_order>
         </magemall>
     </tabs>

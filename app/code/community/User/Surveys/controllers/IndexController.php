@@ -22,7 +22,8 @@
  * @package     User_Surveys
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
+t*/
+/*Sart By Ankush Kumar*/
 class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
 {
     /**
@@ -79,14 +80,14 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
         $model = Mage::getModel('user_surveys/forms');
         $model->load($formId);
         
-        /* Start By Ankush*/
+        /* End By Ankush Kumar*/
         
+        /*Start By Atul Pathak*/
         $questionIds = explode(',',$model['questions_id']);
         $question = array();
         $type= array();
         $options= array();
         $opt= array();
-        //echo "<pre>"; print_r($questionIds); echo "</pre>"; die("HERE");
 
         foreach ($questionIds as $key=> $value){
             $collection = Mage::getModel('user_surveys/questions')->load($value);        
@@ -150,8 +151,6 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
                 
                 if (preg_match('/question_/',$key)) {
                     $que_array = explode("_", $key);
-                    //echo "<pre>"; print_r($que_array[1]); echo "</pre>";
-                    //echo "<pre>"; print_r($value); echo "</pre>";
                     $questionId = $que_array[1];
                     $model->setQuestionId($questionId);
                     $model->setId(null);
@@ -201,6 +200,7 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
                 $model->save();
             }            
         }
+        /*End By Atul Pathak*/
         Mage::getSingleton('core/session')->addSuccess("Thanks for participating in Survey.");
         $this->_redirect('*/*/index');
     }

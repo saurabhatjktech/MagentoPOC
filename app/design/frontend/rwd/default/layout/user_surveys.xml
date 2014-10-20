@@ -27,15 +27,11 @@
 -->
 <layout version="0.1.0">
     <default>
-        <reference name="footer_links">
-            <action method="addLink" translate="label title" module="user_surveys">
-                <label>Surveys</label>
-                <url>surveys</url>
-                <title>Surveys</title>
-                <prepare>true</prepare>
-            </action>
+        <reference name="head">
+        	<action method="addJs"><script>magemall/ajaxlogin.js</script></action>
+	        <action method="addCss"><script>magemall/css/ajaxlogin.css</script></action>
         </reference>
-		<reference name="top.links">
+     	<reference name="top.links">
              <action method="addLink" translate="label title" module="user_surveys">
                 <label>Surveys</label>
                 <url>surveys</url>
@@ -46,14 +42,7 @@
     </default>
     <user_surveys_index_index translate="label">
         <label>Surveys List Page</label>
-        
-        <!-- Add 17-oct-2014 -->
-        <reference name="head">
-        	<action method="addJs"><script>usersurveys/surveys.js</script></action>
-	        <action method="addCss"><script>usersurveys/css/surveys.css</script></action>
-        </reference>
-        <!-- End 17-oct-2014 -->
-        
+         
         <reference name="root">
             <action method="setTemplate">
                 <template>page/2columns-right.phtml</template>
@@ -78,9 +67,6 @@
           <reference name="content">
             <block type="user_surveys/item" name="forms.item" template="usersurveys/forms/item.phtml" />
         </reference>
-        <!--  <reference name="content">
-        	<block type="user_surveys/form" name="ajaxlogin_form" template="usersurveys/forms/form.phtml"></block>
-   		 </reference> -->
         
     </user_surveys_index_view>
     
