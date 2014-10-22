@@ -29,10 +29,11 @@
 <div class="page-title">
     <h1><?php echo Mage::helper('user_surveys')->__('Survey Forms') ?></h1>
 </div>
-<a title="View Survey" href="http://localhost/MagentoPOC/surveys/view/id/1">View Survey</a>
 <div class="container-fluid">
-    <?php foreach ($this->getCollection() as $formsItem): ?>
-        <?php if($formsItem['status'] == 1) {?>
+    <?php foreach ($this->getCollection()->addFieldToFilter('status', array('eq' => 1)) as $formsItem): ?>
+        <?php if($formsItem['visibility'] == 1) { $featuredFormId = $formsItem->getId();?>
+        <a title="View Survey" href="index/view/id/<?php echo $featuredFormId; ?>/">Featured Survey</a>
+        <?php } ?>
             <div id="item_<?php echo $formsItem->getId() ?>" class="page-title">
             <h2>
                 <a href="<?php echo $this->getItemUrl($formsItem) ?>">
@@ -40,7 +41,7 @@
                 </a>
             </h2>
         </div>
-    <?php } endforeach; ?>
+    <?php endforeach; ?>
 </div>
 
 <?php echo $this->getPager() ?>
@@ -48,8 +49,8 @@
 <script src="http://localhost/MagentoPOC/js/magemall/tinybox.js" type="text/javascript"></script>
 <script src="http://localhost/MagentoPOC/js/magemall/ajaxlogin.js" type="text/javascript"></script>
 <script type="text/javascript">
-var G_AJAXLOGIN_URL = "http://localhost/MagentoPOC/ajaxlogin/login/form/";
-$$("a[href*=surveys/view/id/1]").each(function(item) {
+var G_AJAXLOGIN_URL = "index/view/id/<?php echo $featuredFormId ;?>";
+$$("a[href*=index/view/id/<?php echo $featuredFormId ;?>]").each(function(item) {
 	item.href='javascript:void(0)';
 	Event.observe(item, 'click', showloginbox);
 });

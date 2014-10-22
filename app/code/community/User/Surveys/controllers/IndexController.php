@@ -45,7 +45,13 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
      */
     public function indexAction()
     {
-        $this->loadLayout();      
+    	$this->loadLayout()->getLayout();
+    	$customerSession = Mage::getSingleton('customer/session');
+    	
+    	if (!$customerSession->isLoggedIn()) {
+    		$this->_redirect('customer/account/login');
+    	}
+              
         $listBlock = $this->getLayout()->getBlock('forms.list');
         if ($listBlock) {
             $currentPage = abs(intval($this->getRequest()->getParam('p')));
@@ -136,7 +142,67 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
         $itemBlock->setFormAction( Mage::getUrl('*/*/post') );
         $this->renderLayout();
     }
+    /* 
+     public function popupAction()
+    {
+    	$formId = $this->getRequest()->getParam('id');
+    	if (!$formId) {
+    		return $this->_forward('noRoute');
+    	}
     
+    	$model = Mage::getModel('user_surveys/forms');
+    	$model->load($formId);
+        
+    	$questionIds = explode(',',$model['questions_id']);
+    	$question = array();
+    	$type= array();
+    	$options= array();
+    	$opt= array();
+    
+    	foreach ($questionIds as $key=> $value){
+    		$collection = Mage::getModel('user_surveys/questions')->load($value);
+    		$question[$value] = $collection->getQuestions();
+    
+    		$type[$value] = $collection->getType();
+    
+    		$options[$value] = $collection->getOptions();
+    
+    	}
+    	
+    	foreach ($options as $key => $value) {
+    	if($value) {
+    		$opt[$key] = explode(',',$value);
+    		}
+    		}
+    
+    		
+    		Mage::register('questions', $question);
+    		Mage::register('type', $type);
+    		Mage::register('options', $opt);
+    
+    		if (!$model->getId()) {
+    		return $this->_forward('noRoute');
+    }
+    
+    Mage::register('surveys_item', $model);
+    
+    Mage::dispatchEvent('before_surveys_item_display', array('surveys_item' => $model));
+    
+    $this->loadLayout();
+    		$itemBlock = $this->getLayout()->getBlock('forms.item');
+        if ($itemBlock) {
+            $listBlock = $this->getLayout()->getBlock('forms.list');
+    if ($listBlock) {
+    $page = (int)$listBlock->getCurrentPage() ? (int)$listBlock->getCurrentPage() : 1;
+    } else {
+    $page = 1;
+    }
+    $itemBlock->setPage($page);
+    }
+    $itemBlock->setFormAction( Mage::getUrl('post') );
+    $this->renderLayout();
+    } 
+     */
     public function postAction()
     {   
         $post = $this->getRequest()->getPost();

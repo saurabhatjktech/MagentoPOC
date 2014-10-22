@@ -344,7 +344,10 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
         $models->addFieldToFilter('user_id', array('eq' => $userId));
         $models->addFieldToFilter('form_id', array('eq' => $formId));
         $models->load();
-        
+       /*  echo'<pre>';
+        print_r($models);
+        echo'</pre>';
+        die('lSD:JNHj'); */
 		Mage::register('viewModel', $models); 
          
         $this->_initAction();

@@ -76,7 +76,7 @@ class User_Surveys_Block_Adminhtml_Results_Grid extends Mage_Adminhtml_Block_Wid
             'header'    => Mage::helper('user_surveys')->__('User Email'),
             'index'     => 'customer_email',
         ));
-        
+     
         /*Start By Ankush Kumar*/
         $this->addColumn('action', array(
         	'header'    => Mage::helper('user_surveys')->__('User Review'),

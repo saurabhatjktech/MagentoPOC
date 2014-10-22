@@ -35,11 +35,11 @@ class User_Surveys_Block_Adminhtml_Results_View_Form extends Mage_Adminhtml_Bloc
     {
         $model = Mage::registry('viewModel');
 
-		$model->getSelect()
-		->joinLeft(array('que' => 'surveys_questions'),
-				'main_table.question_id = que.id',
-				array('surveys_questions' => 'questions'));
+		$model->getSelect()->joinLeft(array('que' => 'surveys_questions'),
+				                      'main_table.question_id = que.id',
+									   array('surveys_questions' => 'questions'));
 
+		
         $form = new Varien_Data_Form(array(
             'id'      => 'edit_form',
             'action'  => $this->getUrl('*/*/save'),
@@ -47,26 +47,31 @@ class User_Surveys_Block_Adminhtml_Results_View_Form extends Mage_Adminhtml_Bloc
             'enctype' => 'multipart/form-data'
         ));
         $form->setUseContainer(true);
-
+        
         $data = $model->getData();
         
         $userId = $data[0]['user_id'];
+        
         $formId = $data[0]['form_id'];
-        
+       
         $formModel= Mage::getModel('user_surveys/forms')->load($formId);
-        $formName= $formModel->getFormName();
         
+        $formName= $formModel->getFormName();
+       
         $collection = Mage::getModel('customer/customer')->getCollection()->addAttributeToFilter('entity_id', array('eq' => $userId))
         ->addAttributeToSelect('email');
+        
         $user_data = $collection->getData();
+        
         $customerEmail = $user_data[0]['email'];
+       
         $fieldset = $form->addFieldset(
         		'general',
         		array(
         				'legend' => $this->__('User Reviews :   ' .$customerEmail .'<br/>' .'Form Name :  ' . $formName)
         		)
         );
-        
+      
         foreach ($data as $key=>$value){
         	$legendText = 'Question : '. $value['surveys_questions'].
         			' Answer : '.$value['value'];
