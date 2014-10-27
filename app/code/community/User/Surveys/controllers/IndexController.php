@@ -70,6 +70,85 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
     
     public function viewAction()
     {
+    	$customerSession = Mage::getSingleton('customer/session');
+    
+    	if (!$customerSession->isLoggedIn()) {
+    		$this->_redirect('customer/account/login');
+    	}
+    
+    	$formId = $this->getRequest()->getParam('id');
+    	if (!$formId) {
+    		return $this->_forward('noRoute');
+    	}
+    
+    	/** @var $model User_Surveys_Model_Surveys */
+    
+    	$model = Mage::getModel('user_surveys/forms');
+    	$model->load($formId);
+    
+    	/* End By Ankush Kumar*/
+    
+    	/*Start By Atul Pathak*/
+    	$questionIds = explode(',',$model['questions_id']);
+    	$question = array();
+    	$type= array();
+    	$options= array();
+    	$opt= array();
+    
+    	foreach ($questionIds as $key=> $value){
+    		$collection = Mage::getModel('user_surveys/questions')->load($value);
+    		$question[$value] = $collection->getQuestions();
+    
+    		$type[$value] = $collection->getType();
+    
+    		$options[$value] = $collection->getOptions();
+    
+    	}
+    	//echo "<pre>"; print_r($type); echo "</pre>";
+    	//echo "<pre>"; print_r($type); echo "</pre>"; //die("HERE");
+    	//$type[]=  $collection->getType();
+    	foreach ($options as $key => $value) {
+    	if($value) {
+    		$opt[$key] = explode(',',$value);
+    		}
+    		}
+    
+    		// /echo "<pre>"; print_r($opt); echo "</pre>"; //die("HERE");
+    		//die("HEre");
+    
+    		Mage::register('questions', $question);
+    		Mage::register('type', $type);
+    		Mage::register('options', $opt);
+    
+    		if (!$model->getId()) {
+    		return $this->_forward('noRoute');
+    }
+    
+    Mage::register('surveys_item', $model);
+    
+    Mage::dispatchEvent('before_surveys_item_display', array('surveys_item' => $model));
+    
+    $this->loadLayout();
+    		$itemBlock = $this->getLayout()->getBlock('forms.item');
+        if ($itemBlock) {
+            $listBlock = $this->getLayout()->getBlock('forms.list');
+    if ($listBlock) {
+    $page = (int)$listBlock->getCurrentPage() ? (int)$listBlock->getCurrentPage() : 1;
+    } else {
+    $page = 1;
+    }
+    $itemBlock->setPage($page);
+    }
+    $itemBlock->setFormAction( Mage::getUrl('*/*/post') );
+    $this->renderLayout();
+  }
+    
+    /**
+     * Surveys featured survey action
+     */
+    
+    public function featuredSurveyAction()
+    {
             $customerSession = Mage::getSingleton('customer/session');
 
             if (!$customerSession->isLoggedIn()) {
@@ -142,67 +221,7 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
         $itemBlock->setFormAction( Mage::getUrl('*/*/post') );
         $this->renderLayout();
     }
-    /* 
-     public function popupAction()
-    {
-    	$formId = $this->getRequest()->getParam('id');
-    	if (!$formId) {
-    		return $this->_forward('noRoute');
-    	}
     
-    	$model = Mage::getModel('user_surveys/forms');
-    	$model->load($formId);
-        
-    	$questionIds = explode(',',$model['questions_id']);
-    	$question = array();
-    	$type= array();
-    	$options= array();
-    	$opt= array();
-    
-    	foreach ($questionIds as $key=> $value){
-    		$collection = Mage::getModel('user_surveys/questions')->load($value);
-    		$question[$value] = $collection->getQuestions();
-    
-    		$type[$value] = $collection->getType();
-    
-    		$options[$value] = $collection->getOptions();
-    
-    	}
-    	
-    	foreach ($options as $key => $value) {
-    	if($value) {
-    		$opt[$key] = explode(',',$value);
-    		}
-    		}
-    
-    		
-    		Mage::register('questions', $question);
-    		Mage::register('type', $type);
-    		Mage::register('options', $opt);
-    
-    		if (!$model->getId()) {
-    		return $this->_forward('noRoute');
-    }
-    
-    Mage::register('surveys_item', $model);
-    
-    Mage::dispatchEvent('before_surveys_item_display', array('surveys_item' => $model));
-    
-    $this->loadLayout();
-    		$itemBlock = $this->getLayout()->getBlock('forms.item');
-        if ($itemBlock) {
-            $listBlock = $this->getLayout()->getBlock('forms.list');
-    if ($listBlock) {
-    $page = (int)$listBlock->getCurrentPage() ? (int)$listBlock->getCurrentPage() : 1;
-    } else {
-    $page = 1;
-    }
-    $itemBlock->setPage($page);
-    }
-    $itemBlock->setFormAction( Mage::getUrl('post') );
-    $this->renderLayout();
-    } 
-     */
     public function postAction()
     {   
         $post = $this->getRequest()->getPost();
@@ -261,13 +280,14 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
                 $model->setQuestionId($questionId);
                 $model->setId(null);
                 $model->setUserId($userId);
-                $model->setFormId($formId);
+                $model->setFormId($formId); 
+                
                 $model->setValue($value);
                 $model->save();
             }            
         }
         /*End By Atul Pathak*/
-        Mage::getSingleton('core/session')->addSuccess("Thanks for participating in Survey.");
+        Mage::getSingleton('core/session')->addSuccess("Thank You for participating in Survey.");
         $this->_redirect('*/*/index');
     }
 
