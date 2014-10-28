@@ -14,32 +14,9 @@ class Clarion_Customerattribute_CustomerController extends Mage_Core_Controller_
 
         $this->renderLayout();
     }
-    /*
-    @params
-    @author Severtek
-    @comments save uploaded image
-    */
-    public function uploadAction() {
-    	/* echo "<pre>";
-    	print_r($_FILES);
-    	echo "</pre>";
-    	exit(); */
-        $session = Mage::getSingleton('core/session');
-        $customer = $this->getCustomerSession()->getCustomer();
 
-        if ($this->getRequest()->isPost()
-                && isset($_FILES['profileimage-file']['name'])
-                && ($_FILES['profileimage-file']['name'] != '')) {
-            try {
-                $customer->setDataChanges(true)->save();
-            } catch (Exception $e) {
-                Mage::logException($e);
-            }
-        }
-        $this->_redirectReferer();
-    }
 
-    public function viewProfileimageAction() {
+    public function viewProfileimageAction() {die('IN my funciton');
         $file = null;
         $plain = false;
         $customerSession = Mage::getSingleton('customer/session');

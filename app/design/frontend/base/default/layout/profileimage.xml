@@ -12,10 +12,10 @@
 
         <reference name="head">
             <action method="addJs">
-                <script>jquery/sstech/profileimage/jQuery.js</script>
+                <script>jquery/jktech/profileimage/jQuery.js</script>
             </action>
             <action method="addCss">
-                <stylesheet>css/sstech/profileimage.css</stylesheet>
+                <stylesheet>css/jktech/profileimage.css</stylesheet>
             </action>
         </reference>
 
@@ -29,7 +29,7 @@
 
     <customer_account>
         <reference name="customer_account_navigation">
-            <action method="addLink" translate="label" module="customerattribute">
+            <action method="addLink" translate="label" module="clarion_customerattribute">
                 <name>set_profileimage</name>
                 <path>customerattribute/customer/form</path>
                 <label>My Profileimage</label>

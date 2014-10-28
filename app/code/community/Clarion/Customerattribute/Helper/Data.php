@@ -11,13 +11,13 @@ class Clarion_Customerattribute_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * My custom code for Profileimage
      */
-    const XML_PATH_UPLOAD_WIDGET_ENABLED = 'customer/profileimage_widget/enabled';
+    /*const XML_PATH_UPLOAD_WIDGET_ENABLED = 'customer/profileimage_widget/enabled';
     public function isShowUploadWidget(){
         return Mage::app()->getStore()->getConfig(self::XML_PATH_UPLOAD_WIDGET_ENABLED);
     }
     public function _getProfileimage(){
         return Mage::getSingleton('profileimage/profileimage');
-    }
+    }*/
 
     /**
      * XML path to input types validator data in config

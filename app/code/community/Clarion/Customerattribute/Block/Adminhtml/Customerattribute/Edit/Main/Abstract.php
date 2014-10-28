@@ -70,7 +70,7 @@ abstract class  Clarion_Customerattribute_Block_Adminhtml_Customerattribute_Edit
          */
 
         $maxKey = max(array_keys($inputTypes))+1;
-        $inputImage[$maxKey] = array('value' => 'file', 'label' => 'Image');
+        $inputImage[$maxKey] = array('value' => 'image', 'label' => 'Image');
         $inputTypes = array_merge($inputTypes,$inputImage);
 
         $fieldset->addField('frontend_input', 'select', array(

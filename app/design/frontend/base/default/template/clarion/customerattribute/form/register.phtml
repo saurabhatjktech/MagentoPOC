@@ -130,7 +130,7 @@
                                         <?php endforeach;?>
                                     </select>
 
-                                    <?php elseif($attribute->getFrontendInput()== 'file'):?>
+                                    <?php elseif($attribute->getFrontendInput()== 'image'):?>
                                     <input type="file" name="<?php echo $attribute->getAttributeCode(); ?>" id="<?php echo $attribute->getAttributeCode(); ?>" value="<?php echo $this->escapeHtml($fieldValue); ?>" title="<?php echo $this->__($frontEndLabel); ?>" class="input-text <?php echo $fieldRequiredClass; ?> <?php echo $fieldFrontendClass ;?>" />
                                     <script type="text/javascript">
                                     $j = jQuery.noConflict();

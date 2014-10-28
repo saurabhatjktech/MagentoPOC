@@ -96,7 +96,7 @@
     </global>
 
     <frontend>
-        <routers>
+        <!-- <routers>
             <profileimage>
                 <use>standard</use>
                 <args>
@@ -114,7 +114,7 @@
                 </prepare_profileimage_upload>
             </observers>
         </customer_save_before>
-        </events>
+        </events> -->
 
         <layout>
             <updates>
@@ -167,7 +167,7 @@
                     <boolean>boolean</boolean>
                     <multiselect>multiselect</multiselect>
                     <select>select</select>
-                    <image>file</image>
+                    <image>image</image>
                 </input_types>
             </validator_data>
         </general>
