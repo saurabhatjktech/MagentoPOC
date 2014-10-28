@@ -23,6 +23,7 @@
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
+
 class User_Surveys_Block_Adminhtml_Questions_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
     /**
@@ -57,7 +58,6 @@ class User_Surveys_Block_Adminhtml_Questions_Grid extends Mage_Adminhtml_Block_W
     
     protected function _prepareColumns()
     {
-        //echo '<pre>'; print($this->getFormName()); echo '<pre>'; die("Here");
 
         $this->addColumn('id', array(
             'header'    => Mage::helper('user_surveys')->__('ID #'),
@@ -93,3 +93,4 @@ class User_Surveys_Block_Adminhtml_Questions_Grid extends Mage_Adminhtml_Block_W
         return $this->getUrl('*/*/grid', array('_current'=>true));
     }
 }
+

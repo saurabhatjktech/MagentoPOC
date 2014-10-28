@@ -43,23 +43,15 @@ class User_Surveys_Block_Adminhtml_Results_Grid extends Mage_Adminhtml_Block_Wid
      *
      * @return User_Surveys_Block_Adminhtml_Grid
      */
-    protected function _prepareCollection()
-    {   
 
-        $id = $this->getRequest()->getParam('id');
-        $model =  Mage::getModel('user_surveys/forms')->load($id);
-        $formId= $model->getId();
-        $collection = Mage::getResourceModel('user_surveys/surveys_collection')
-        ->addFieldToFilter('form_id', array('eq' => $formId));    
-    
-        $collection->getSelect()
-        ->joinLeft(array('cus' => 'customer_entity'),
-               'main_table.user_id = cus.entity_id',
-               array('customer_email' => 'email'))
-        ->group('user_id');
-
+    protected function _prepareCollection(){
+  
+   		/*Start By Ankush Kumar*/
+    	$collection = Mage::registry('collection');
+ 		
         $this->setCollection($collection);
-
+		
+		/*End By Ankush Kumar*/
         return parent::_prepareCollection();
     }
 
@@ -85,6 +77,28 @@ class User_Surveys_Block_Adminhtml_Results_Grid extends Mage_Adminhtml_Block_Wid
             'header'    => Mage::helper('user_surveys')->__('User Email'),
             'index'     => 'customer_email',
         ));
+
+     
+        /*Start By Ankush Kumar*/
+        $this->addColumn('action', array(
+        	'header'    => Mage::helper('user_surveys')->__('User Review'),
+        	'width'     => '200px',
+        	'type'      => 'action',
+        	'getter'    => 'getId',
+        	'actions'   => array(array(
+        	'caption'   => Mage::helper('user_surveys')->__('View Feedback'),
+        	'url'    	=> array('base' => '*/*/view'),
+        	'field'   	=> 'id'
+        ),
+        	),
+        	'filter'    => false,
+        	'sortable'  => false,
+        	'index'     => 'stores',
+        	'is_system'	=> true,
+        )
+        	);
+        
+        /*End By Ankush Kumar*/
         return parent::_prepareColumns();
     }
 
@@ -93,11 +107,14 @@ class User_Surveys_Block_Adminhtml_Results_Grid extends Mage_Adminhtml_Block_Wid
      *
      * @return string
      */
+    
+    /*Start By Ankush Kumar*/
     public function getRowUrl($row)
     {
-        return $this->getUrl('*/*/view', array('userId' => $row->getUserId(), 'formId' => $row->getFormId()));
+        return $this->getUrl('*/*/view', array('id' => $row->getId()));
     }
-
+    /*End By Ankush Kumar*/
+    
     /**
      * Grid url getter
      *

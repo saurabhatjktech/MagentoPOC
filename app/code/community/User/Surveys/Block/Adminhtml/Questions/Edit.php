@@ -23,6 +23,7 @@
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
+
 class User_Surveys_Block_Adminhtml_Questions_Edit extends Mage_Adminhtml_Block_Widget_Form_Container
 {
     /**

@@ -23,6 +23,8 @@
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
+
+/*Start by Atul Pathak*/
 class User_Surveys_Adminhtml_QuestionsController extends Mage_Adminhtml_Controller_Action
 {
 
@@ -69,7 +71,6 @@ class User_Surveys_Adminhtml_QuestionsController extends Mage_Adminhtml_Controll
         $model = Mage::getModel('user_surveys/questions');
 
         $questionId = $this->getRequest()->getParam('id');
-        //echo "<pre>"; print($questionId); echo "</pre>"; //die("Testing");
         
         if ($questionId) {
             $model->load($questionId);
@@ -151,13 +152,31 @@ class User_Surveys_Adminhtml_QuestionsController extends Mage_Adminhtml_Controll
     {
         // check if we know what should be deleted
         $id = $this->getRequest()->getParam('id');
-        //echo '<pre>'; print($id); echo '</pre>'; die("Testing ...!!!!");
+
         if ($id) {
             try {
                 // init model and delete
                 /** @var $model User_Surveys_Model_Item */
-                $model = Mage::getModel('user_surveys/questions');
-                $model->load($id);
+
+            	
+            	/*Start by Ankush Kumar*/
+            	$collection = Mage::getModel('user_surveys/surveys')
+            	->getCollection()
+            	->addFieldToFilter('question_id', array('eq' => $id))
+            	->getData();
+
+            	$surveys = Mage::getModel('user_surveys/surveys');
+            	
+            	foreach ($collection as $key => $value)
+            	{
+            		$surveys->load($value['id']);
+            		$surveys->delete();
+            	}
+            	
+            	$model = Mage::getModel('user_surveys/questions');
+            	$model->load($id);
+            	/*End by Ankush Kumar*/
+            	
                 if (!$model->getId()) {
                     Mage::throwException(Mage::helper('user_surveys')->__('Unable to find Question'));
                 }
@@ -188,7 +207,6 @@ class User_Surveys_Adminhtml_QuestionsController extends Mage_Adminhtml_Controll
     {
         $this->loadLayout();
         $this->renderLayout();
-
-    }
-    
+    }  
 }
+/*End by Atul Pathak*/

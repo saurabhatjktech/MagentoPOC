@@ -23,6 +23,7 @@
  * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
+
 class User_Surveys_Block_Adminhtml_Questions_Edit_Form extends Mage_Adminhtml_Block_Widget_Form
 {
     /**
@@ -32,6 +33,7 @@ class User_Surveys_Block_Adminhtml_Questions_Edit_Form extends Mage_Adminhtml_Bl
      */
     protected function _prepareForm()
     {   
+
 
         /*die("HERE");
         $model = Mage::helper('user_surveys')->getEventsItemInstance();
@@ -44,11 +46,11 @@ class User_Surveys_Block_Adminhtml_Questions_Edit_Form extends Mage_Adminhtml_Bl
         $collection = Mage::getModel('user_surveys/questions')->getCollection()->load();
         $result= $collection->getItems();*/
 
+
         $questionId = $this->getRequest()->getParam('id');
         $model = Mage::getModel('user_surveys/questions')->load($questionId);
         
         $questionData= Mage::registry('questionData');
-        //echo "<pre>"; print_r($model); echo "</pre>";// die("Testing...>!!!!!!!");
 
         $form = new Varien_Data_Form(array(
             'id'      => 'edit_form',
@@ -90,7 +92,9 @@ class User_Surveys_Block_Adminhtml_Questions_Edit_Form extends Mage_Adminhtml_Bl
             'name'     => 'Field option(s)',
             'label'    => Mage::helper('user_surveys')->__('Field option(s) if any'),
             'title'    => Mage::helper('user_surveys')->__('Field option(s)'),
+
             'note' => Mage::helper('user_surveys')->__('Multiple values should be separated with comma "," and Should Not CONTAIN SPACES. '),
+
         ));
 
         // Add the fields that we want to be editable.
@@ -100,5 +104,6 @@ class User_Surveys_Block_Adminhtml_Questions_Edit_Form extends Mage_Adminhtml_Bl
 
         return parent::_prepareForm();
     }
+
 
 }

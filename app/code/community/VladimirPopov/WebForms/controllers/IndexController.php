@@ -21,8 +21,9 @@ class VladimirPopov_WebForms_IndexController extends Mage_Core_Controller_Front_
 		$webform = Mage::getModel('webforms/webforms')
 			->setStoreId(Mage::app()->getStore()->getId())
 			->load(Mage::app()->getRequest()->getPost("webform_id"));
-
+		
 		$result = array("success" => false, "errors" => array());
+		
 		if(Mage::app()->getRequest()->getPost('submitWebform_'.$webform->getId())){
 			$result["success"] = $webform->savePostResult();
 			if($result["success"]){

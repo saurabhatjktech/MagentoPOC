@@ -1,3 +1,4 @@
+
 <?php
 class Mage_Catalog_Block_Product_Mostviewed extends Mage_Catalog_Block_Product_Abstract{
     public function __construct(){

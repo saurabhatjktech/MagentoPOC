@@ -14,7 +14,8 @@
             <div class="a-center">                        
                 <?php if($_product->getRatingSummary()): ?>
                     <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
-			    <?php endif; ?>
+                <?php endif; ?>
+
                 <?php echo $this->getPriceHtml($_product, true) ?>
                 <?php if($_product->isSaleable()): ?>
                     <button class="button" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><span><?php echo $this->__('Add to Cart') ?></span></span></span></button>

@@ -16,6 +16,7 @@ class VladimirPopov_WebForms_Block_Adminhtml_Fields_Edit_Tab_Design
     protected function _prepareForm()
     {
         $model = Mage::getModel('webforms/webforms');
+
         $form = new Varien_Data_Form();
         $form->setFieldNameSuffix('field');
         $form->setDataObject(Mage::registry('field'));

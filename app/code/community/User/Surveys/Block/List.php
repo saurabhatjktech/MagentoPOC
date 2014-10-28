@@ -63,11 +63,17 @@ class User_Surveys_Block_List extends Mage_Core_Block_Template
      * @param User_Surveys_Model_Surveys $surveysItem
      * @return string
      */
-    public function getItemUrl($surveysItem)
-    {
-        return $this->getUrl('*/*/view', array('id' => $surveysItem->getId()));
-    }
 
+     public function getItemUrl($featuredItem)
+     {
+         return $this->getUrl('*/*/featuredSurvey', array('id' => $featuredItem->getId()));
+     }
+    
+     public function getFormUrl($featuredItem)
+     {
+     	return $this->getUrl('*/*/view', array('id' => $featuredItem->getId()));
+     }
+      
     /**
      * Fetch the current page for the surveys list
      *

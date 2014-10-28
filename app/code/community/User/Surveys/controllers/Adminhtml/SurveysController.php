@@ -208,6 +208,7 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
         $this->_redirect($redirectPath, $redirectParams);
     }
 
+
     /**
      * Delete action
      */
@@ -305,24 +306,48 @@ class User_Surveys_Adminhtml_SurveysController extends Mage_Adminhtml_Controller
     {
         $this->_title($this->__('Feedbacks'))
              ->_title($this->__('Manage Feedbacks'));
-		$this->_initAction();
-        $this->renderLayout();
+	
+		$id = $this->getRequest()->getParam('id');
+        $model =  Mage::getModel('user_surveys/forms')->load($id);
+        $formId= $model->getId();
+  
+        $collection = Mage::getResourceModel('user_surveys/surveys_collection')
+        ->addFieldToFilter('form_id', array('eq' => $formId));    
+   
+        $collection->getSelect()
+        ->joinLeft(array('cus' => 'customer_entity'),
+                         'main_table.user_id = cus.entity_id',
+                   array('customer_email' => 'email'))
+        ->group('user_id');
+     
+        /*Start By Ankush*/
+        Mage::register('collection', $collection);
+        /*End By Ankush*/
         
+		$this->_initAction();
+        $this->renderLayout();    
     }
     
+    /* Start By Ankush*/
+
     public function viewAction()
     {
     	$this->_title($this->__('View'))
     		 ->_title($this->__('Surveys Feedback'));
-        $userId= $this->getRequest()->getParam('userId');
-        $formId= $this->getRequest()->getParam('formId');
-        $model = Mage::getModel('user_surveys/surveys')->getCollection();
-        $model->addFieldToFilter('user_id', array('eq' => $userId));
-        $model->addFieldToFilter('form_id', array('eq' => $formId));
-        $model->load();
-		
-        Mage::register('viewModel', $model); 
-         
+
+        $id = $this->getRequest()->getParam('id');
+        $model = Mage::getModel('user_surveys/surveys');
+        $model->load($id);        
+        
+        $formId= $model->getFormId();
+        $userId= $model->getUserId();
+        
+        $models = Mage::getModel('user_surveys/surveys')->getCollection();
+        $models->addFieldToFilter('user_id', array('eq' => $userId));
+        $models->addFieldToFilter('form_id', array('eq' => $formId));
+        $models->load();
+		Mage::register('viewModel', $models); 
+     
         $this->_initAction();
         $this->renderLayout();
     }

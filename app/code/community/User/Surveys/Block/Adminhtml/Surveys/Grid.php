@@ -44,8 +44,6 @@ class User_Surveys_Block_Adminhtml_Surveys_Grid extends Mage_Adminhtml_Block_Wid
     protected function _prepareCollection()
     {
         $collection = Mage::getModel('user_surveys/forms')->getResourceCollection();
-        //echo "<pre>";var_dump($collection);echo "</pre>";
-
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
@@ -68,12 +66,6 @@ class User_Surveys_Block_Adminhtml_Surveys_Grid extends Mage_Adminhtml_Block_Wid
             'index'     => 'form_name',
         ));
 
-        // $this->addColumn('active', array(
-        //     'header'    => Mage::helper('user_surveys')->__('isActive'),
-        //     'index'     => 'active',
-        //     'width'     => '250px',
-        // ));
-
         $this->addColumn('status',
             array(
                 'header'=> Mage::helper('user_surveys')->__('Status'),
@@ -82,7 +74,6 @@ class User_Surveys_Block_Adminhtml_Surveys_Grid extends Mage_Adminhtml_Block_Wid
                 'type'  => 'options',
                 'options' => Mage::getSingleton('user_surveys/surveys')->getOptionArray(),
         ));
-
 
         $this->addColumn('action',
             array(

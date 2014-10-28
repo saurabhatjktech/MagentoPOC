@@ -31,10 +31,11 @@
         <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>
 </reference>
 
-<?php $_surveysItem = $this->helper('user_surveys')->getSurveysItemInstance(); ?>
+
+<?php $_featuredItem = $this->helper('user_surveys')->getSurveysItemInstance(); ?>
     <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
     <div class="page-title">
-        <h1 ><?php echo Mage::helper('user_surveys')->__($this->escapeHtml($_surveysItem->getFormName())) ?></h1>
+        <h1 ><?php echo Mage::helper('user_surveys')->__($this->escapeHtml($_featuredItem->getFormName())) ?></h1>
     </div>
     <form action="<?php echo $this->getFormAction(); ?>" id="surveysForm" method="post" class="scaffold-form">
     <div class="fieldset">
@@ -45,20 +46,20 @@
                  <input name="user_id" type="hidden" value="<?php echo Mage::getSingleton('customer/session')->getId(); ?>" />
             </li>
             <li>
-                <input name="form_id" type="hidden" value="<?php echo Mage::helper('user_surveys')->__($this->escapeHtml($_surveysItem->getId())) ?>" />
+
+                <input name="form_id" type="hidden" value="<?php echo Mage::helper('user_surveys')->__($this->escapeHtml($_featuredItem->getId())) ?>" />
             </li>
             <li>
                 
                 <?php $que= Mage::registry('questions');
                       $type= Mage::registry('type');
                       $options= Mage::registry('options');
-                      //echo "<pre>"; print_r($type); echo "</pre>"; 
-                      //echo "<pre>"; print_r($options); echo "</pre>";
-                      //echo "<pre>"; print_r($que); echo "</pre>";   
+
                 ?>
 
                 <?php
                 foreach($type as $key => $value) { 
+
 // If input type is TEXT
                     switch ($value) {
                         case "text":
@@ -76,7 +77,9 @@
                         break;
                         ?>
 
+
 <!-- If input type is TEXT AREA -->
+
                         <?php
                         case "textarea":
                         ?>
@@ -92,7 +95,9 @@
                         break;
                         ?>
 
+
 <!-- If input type is SELECT -->
+
                         <?php
                         case "select":
                         ?>
@@ -120,7 +125,9 @@
                         break;
                         ?>
 
+
 <!-- IF input type is MULTI SELECT -->
+
                         <?php
                         case "multiselect":
                         ?>
@@ -149,6 +156,7 @@
                         ?>
 
 <!-- IF input type is BOOLEAN -->
+
                         <?php
                         case "boolean":
                         ?>    
@@ -167,13 +175,13 @@
                                     }
                                 }
                             ?>
-                            
 
                             <!-- <input type="radio" name="sex" value="male">Male<br>
                             <input type="radio" name="sex" value="female">Female -->
                         </div>
                         <br/>
                         <?php
+
                         break;
 
                         case "date":
@@ -201,6 +209,7 @@
         <button type="submit" align="center" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('contacts')->__('Submit') ?></span></span></button>
     </div>
 </form>
+
 <script type="text/javascript">
 //<![CDATA[
     var contactForm = new VarienForm('contactForm', true);

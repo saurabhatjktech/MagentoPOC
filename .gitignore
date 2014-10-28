@@ -1,4 +1,5 @@
-/var/cache
-/var/session
+/var
 media/catalog/product/cache
-.settings
+.buildpath
+.settings/
+
