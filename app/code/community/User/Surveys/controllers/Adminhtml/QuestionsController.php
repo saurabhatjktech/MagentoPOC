@@ -128,10 +128,11 @@ class User_Surveys_Adminhtml_QuestionsController extends Mage_Adminhtml_Controll
 
             //get question value
             $question= $data['quesion_text'];
+
             //get type value
             $type= $data['input_type'];
-            //get options
 
+            //get options
             $options= $data['Field_option(s)'];
             $array_options = explode(',', $options);
             $trimmed_array=array_map('trim',$array_options);
