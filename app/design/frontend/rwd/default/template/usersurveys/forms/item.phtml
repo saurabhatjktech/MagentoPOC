@@ -24,6 +24,13 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
+
+<reference name="head">
+        <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/><!--<if/><condition>can_load_calendar_js</condition>--></action>
+        <action method="addItem"><type>js</type><name>calendar/calendar.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>
+        <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>
+</reference>
+
 <?php $_surveysItem = $this->helper('user_surveys')->getSurveysItemInstance(); ?>
     <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
     <div class="page-title">
@@ -52,8 +59,8 @@
 
                 <?php
                 foreach($type as $key => $value) { 
-                    switch ($value) {
 // If input type is TEXT
+                    switch ($value) {
                         case "text":
                         ?>
                         
@@ -167,7 +174,21 @@
                         </div>
                         <br/>
                         <?php
-                        break; 
+                        break;
+
+                        case "date":
+                        ?>
+                        
+                        <label for="question" ><b><?php echo $que[$key]?></b>
+                        </label>
+                        <br/>
+                        <div class="input-box">
+                            <input type="date" readonly="true" name="question_<?php echo $key ?>" id="_dob" value="" />
+                            <img id="_dob_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>"  class=""/>
+                        </div>
+                        <br/>
+                        <?php
+                        break;
                     }
                 }
                 ?>
@@ -185,3 +206,14 @@
     var contactForm = new VarienForm('contactForm', true);
 //]]>
 </script>
+
+<script type="text/javascript">// <![CDATA[
+Calendar.setup({
+    inputField : '_dob',
+    ifFormat : '%e/%m/%y',
+    button : '_dob_trig',
+    align : 'Bl',
+    singleClick : true
+});
+
+// ]]></script>

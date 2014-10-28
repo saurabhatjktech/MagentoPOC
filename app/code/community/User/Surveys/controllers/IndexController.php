@@ -63,11 +63,11 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
     
     public function viewAction()
     {
-            $customerSession = Mage::getSingleton('customer/session');
+        $customerSession = Mage::getSingleton('customer/session');
 
-            if (!$customerSession->isLoggedIn()) {
-                $this->_redirect('customer/account/login');
-            }
+        if (!$customerSession->isLoggedIn()) {
+            $this->_redirect('customer/account/login');
+        }
 
         $formId = $this->getRequest()->getParam('id');
         if (!$formId) {
@@ -139,7 +139,7 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
     public function postAction()
     {	
         $post = $this->getRequest()->getPost();
-        echo "<pre>"; print_r($post); echo "</pre>";
+        echo "<pre>"; print_r($post); echo "</pre>"; //die("HEREEEEE");
         
         $questionIdForCheckBox;
         if ( $post ) {
