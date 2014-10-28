@@ -133,7 +133,7 @@
                                 foreach ($options as $opt => $val) {
                                     if ($opt == $key) { 
                                         foreach ($val as $index => $output) { ?>
-                                            <input name="option_checked_<?php echo $index?>--<?php echo $key?>" type="checkbox" class="input-text" value="<?php echo $output ?>"><?php echo $output?><br/>
+                                            <input name="option_checked_<?php echo $index?>--<?php echo $key?>" type="checkbox" class="input-text" value="<?php echo $output ?>">&nbsp; &nbsp;<?php echo $output ?><br/>
                                         <?php
                                         }
                                     }
@@ -162,7 +162,7 @@
                                 foreach ($options as $opt => $val) {
                                     if ($opt == $key) { 
                                         foreach ($val as $index => $output) { ?>
-                                            <input name="question_<?php echo $key?>" type="radio" class="input-text" value="<?php echo $output ?>"><?php echo $output?><br/>
+                                            <input name="question_<?php echo $key?>" type="radio" class="input-text" value="<?php echo $output ?>">&nbsp; &nbsp;<?php echo $output?><br/>
                                         <?php
                                         }
                                     }
@@ -176,10 +176,9 @@
                         <?php
 
                         break;
-
+/*if type is date*/
                         case "date":
                         ?>
-                        
                         <label for="question" ><b><?php echo $que[$key]?></b>
                         </label>
                         <br/>

@@ -27,7 +27,6 @@
 /*Start by Atul Pathak*/
 class User_Surveys_Adminhtml_QuestionsController extends Mage_Adminhtml_Controller_Action
 {
-
     protected function _initAction()
     {
         // load layout, set active menu and breadcrumbs
@@ -114,6 +113,7 @@ class User_Surveys_Adminhtml_QuestionsController extends Mage_Adminhtml_Controll
 
         //data from post
         $data = $this->getRequest()->getPost();
+        echo '<pre>'; print_r($data); echo '</pre>';
         if ($data) {
             //load questions model for saving    
             $model = Mage::getModel('user_surveys/questions');
@@ -131,12 +131,16 @@ class User_Surveys_Adminhtml_QuestionsController extends Mage_Adminhtml_Controll
             //get type value
             $type= $data['input_type'];
             //get options
+
             $options= $data['Field_option(s)'];
+            $array_options = explode(',', $options);
+            $trimmed_array=array_map('trim',$array_options);
+            $comma_separated_options = implode(",", $trimmed_array);
             
             // Using setters to set in Model
             $model->setQuestions($question);
             $model->setType($type);
-            $model->setOptions($options);
+            $model->setOptions($comma_separated_options);
             
             //saving into model
             $model->save();
@@ -208,5 +212,7 @@ class User_Surveys_Adminhtml_QuestionsController extends Mage_Adminhtml_Controll
         $this->loadLayout();
         $this->renderLayout();
     }  
+
+    
 }
 /*End by Atul Pathak*/
