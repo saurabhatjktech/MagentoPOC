@@ -27,13 +27,8 @@
 -->
 <layout version="0.1.0">
     <default>
-
-        <reference name="head">
-        	<action method="addJs"><script>magemall/ajaxlogin.js</script></action>
-	        <action method="addCss"><script>magemall/css/ajaxlogin.css</script></action>
-        </reference>
-     	<reference name="top.links">
-             <action method="addLink" translate="label title" module="user_surveys">
+        <reference name="top.links">
+            <action method="addLink" translate="label title" module="user_surveys">
                 <label>Surveys</label>
                 <url>surveys</url>
                 <title>Surveys</title>
@@ -58,15 +53,15 @@
             </block>
         </reference>
     </user_surveys_index_index>
-
-    
-    <user_surveys_index_featuredsurvey translate="label">
+  
+    <user_surveys_index_featuredsurvey translate="`label">
         <label>Surveys Item Page</label>
         <reference name="root">
             <action method="setTemplate">
                 <template>page/popup.phtml</template>
             </action>
         </reference>
+        
           <reference name="content">
             <block type="user_surveys/item" name="forms.item" template="usersurveys/forms/item.phtml" />
         </reference>
@@ -76,7 +71,6 @@
         <label>Surveys Item Page</label>
         <reference name="root">
             <action method="setTemplate">
-
                 <template>page/1column.phtml</template>
             </action>
         </reference>

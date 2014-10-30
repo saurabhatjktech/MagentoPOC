@@ -62,8 +62,8 @@
                         </label>
                         <br/>
                         <div class="input-box">
-                            <input name="question_<?php echo $key ?>" type="text" id="question_<?php echo $key ?>" title="<?php echo Mage::helper('user_surveys')->__('Question') ?>" class="input-text">
-                            </input>
+                            <input name="question_<?php echo $key ?>" class="required" type="text" id="question_<?php echo $key ?>" title="<?php echo Mage::helper('user_surveys')->__('Question') ?>" class="input-text">
+                            <em>*</em></input>
                         </div>
                         <br/>
                         <?php
@@ -168,9 +168,6 @@
                                     }
                                 }
                             ?>
-
-                            <!-- <input type="radio" name="sex" value="male">Male<br>
-                            <input type="radio" name="sex" value="female">Female -->
                         </div>
                         <br/>
                         <?php
@@ -198,13 +195,13 @@
     
     <div class="buttons-set">
         <input type="text"  name="hideit" id="hideit" value="" style="display:none !important;" />
-        <button type="submit" align="center" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('contacts')->__('Submit') ?></span></span></button>
+        <button type="submit" align="center" title="<?php echo Mage::helper('user_surveys')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('user_surveys')->__('Submit') ?></span></span></button>
     </div>
 </form>
 
 <script type="text/javascript">
 //<![CDATA[
-    var contactForm = new VarienForm('contactForm', true);
+    var surveysForm = new VarienForm('surveysForm', true);
 //]]>
 </script>
 

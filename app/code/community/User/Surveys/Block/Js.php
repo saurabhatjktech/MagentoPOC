@@ -55,7 +55,7 @@ class User_Surveys_Block_Js extends Mage_Core_Block_Text
 		$jsMain = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS) . 'magemall/ajaxlogin.js';
 		$cssMain = $this->getSkinUrl('css/ajaxlogin.css'); 
 		
-		$url = $this->getUrl('surveys/index/view/id/1');
+		$url = $this->getUrl('index/featuredSurvey/id/<?php echo $featuredFormId ;?>');
         $html = <<<HTML
 <!-- AjaxLogin -->
 <link rel="stylesheet" type="text/css" href="{$cssMain}" media="all" />
@@ -63,7 +63,7 @@ class User_Surveys_Block_Js extends Mage_Core_Block_Text
 <script type="text/javascript" src="{$jsMain}"></script>
 <script type="text/javascript">
 var G_AJAXLOGIN_URL = "{$url}";
-$$("a[href*=surveys/index]").each(function(item) {
+$$("a[href*=index/featuredSurvey/id/<?php echo $featuredFormId ;?>]").each(function(item) {
 	item.href='javascript:void(0)';
 	Event.observe(item, 'click', showloginbox);
 });
