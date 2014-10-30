@@ -16,7 +16,8 @@ class Clarion_Customerattribute_CustomerController extends Mage_Core_Controller_
     }
 
 
-    public function viewProfileimageAction() {die('IN my funciton');
+    public function viewProfileimageAction() {
+        
         $file = null;
         $plain = false;
         $customerSession = Mage::getSingleton('customer/session');
@@ -28,7 +29,12 @@ class Clarion_Customerattribute_CustomerController extends Mage_Core_Controller_
             return $this->norouteAction();
         }
         $path = Mage::getBaseDir('media') . DS . 'customer';
+        
         $file = $customer->getData(Clarion_Customerattribute_Model_Config::Profileimage_ATTR_CODE);
+        /* echo "<pre>";
+        print_r($file);
+        echo "</pre>";
+        exit(); */
         $ioFile = new Varien_Io_File();
         $ioFile->open(array('path' => $path));
         $fileName = $ioFile->getCleanPath($path . $file);

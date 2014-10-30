@@ -13,7 +13,7 @@
         <reference name="header">
             <!-- <action method="setTemplate">
                 <template>profileimage/page/html/header.phtml</template>
-            </action>-->
+            </action> -->
             <block type="profileimage/header_profileimage" name="header_profileimage" template="profileimage/header/profileimage.phtml"/>
         </reference>
     </default>

@@ -96,16 +96,16 @@
     </global>
 
     <frontend>
-        <!-- <routers>
-            <profileimage>
+        <routers>
+            <clarion_customerattribute>
                 <use>standard</use>
                 <args>
                     <module>Clarion_Customerattribute</module>
-                    <frontName>profileimage</frontName>
+                    <frontName>customerattribute</frontName>
                 </args>
-            </profileimage>
+            </clarion_customerattribute>
         </routers>
-        <events>
+        <!-- <events>
         <customer_save_before>
             <observers>
                 <prepare_profileimage_upload>
