@@ -70,7 +70,6 @@
                         break;
                         ?>
 
-
 <!-- If input type is TEXT AREA -->
 
                         <?php
@@ -87,7 +86,6 @@
                         <?php
                         break;
                         ?>
-
 
 <!-- If input type is SELECT -->
 
@@ -183,6 +181,16 @@
                             <input type="date" readonly="true" name="question_<?php echo $key ?>" id="_dob" value="" />
                             <img id="_dob_trig" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN) . 'adminhtml/default/default/images/grid-cal.gif'; ?>"  class=""/>
                         </div>
+                        <script type="text/javascript">// <![CDATA[
+                        Calendar.setup({
+                            inputField : '_dob',
+                            ifFormat : '%e/%m/%y',
+                            button : '_dob_trig',
+                            align : 'Bl',
+                            singleClick : true
+                        });
+                        // ]]></script>
+
                         <br/>
                         <?php
                         break;
@@ -195,7 +203,7 @@
     
     <div class="buttons-set">
         <input type="text"  name="hideit" id="hideit" value="" style="display:none !important;" />
-        <button type="submit" align="center" title="<?php echo Mage::helper('user_surveys')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('user_surveys')->__('Submit') ?></span></span></button>
+        <button type="submit" title="<?php echo Mage::helper('user_surveys')->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('user_surveys')->__('Submit') ?></span></span></button>
     </div>
 </form>
 
@@ -205,13 +213,3 @@
 //]]>
 </script>
 
-<script type="text/javascript">// <![CDATA[
-Calendar.setup({
-    inputField : '_dob',
-    ifFormat : '%e/%m/%y',
-    button : '_dob_trig',
-    align : 'Bl',
-    singleClick : true
-});
-
-// ]]></script>

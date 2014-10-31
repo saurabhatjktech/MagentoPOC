@@ -107,17 +107,12 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
     		$options[$value] = $collection->getOptions();
     
     	}
-    	//echo "<pre>"; print_r($type); echo "</pre>";
-    	//echo "<pre>"; print_r($type); echo "</pre>"; //die("HERE");
-    	//$type[]=  $collection->getType();
+    	
     	foreach ($options as $key => $value) {
     	if($value) {
     		$opt[$key] = explode(',',$value);
     		}
     		}
-    
-    		// /echo "<pre>"; print_r($opt); echo "</pre>"; //die("HERE");
-    		//die("HEre");
     
     		Mage::register('questions', $question);
     		Mage::register('type', $type);
@@ -149,7 +144,12 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
     /**
      * Surveys featured survey action
      */
-    
+  public function testAction()
+  {
+  	return 3;
+  	
+  }
+  
     public function featuredSurveyAction()
     {
             $customerSession = Mage::getSingleton('customer/session');
@@ -183,18 +183,12 @@ class User_Surveys_IndexController extends Mage_Core_Controller_Front_Action
             $options[$value] = $collection->getOptions();
             
         }
-        //echo "<pre>"; print_r($type); echo "</pre>";
-        //echo "<pre>"; print_r($type); echo "</pre>"; //die("HERE");  
-        //$type[]=  $collection->getType();
+       
         foreach ($options as $key => $value) {
             if($value) {
                 $opt[$key] = explode(',',$value);
             }
         }
-
-        // /echo "<pre>"; print_r($opt); echo "</pre>"; //die("HERE");  
-        //die("HEre");
-        
 
         Mage::register('questions', $question);
         Mage::register('type', $type);

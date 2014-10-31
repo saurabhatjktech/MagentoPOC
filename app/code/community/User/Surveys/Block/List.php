@@ -50,7 +50,7 @@ class User_Surveys_Block_List extends Mage_Core_Block_Template
     public function getCollection()
     {
         if (is_null($this->_formsCollection)) {
-            $this->_formsCollection = $this->_getCollection();
+           $this->_formsCollection = $this->_getCollection();
             $this->_formsCollection->prepareForList($this->getCurrentPage());
         }
 
@@ -64,14 +64,16 @@ class User_Surveys_Block_List extends Mage_Core_Block_Template
      * @return string
      */
 
-     public function getItemUrl($featuredItem)
+     public function getItemUrl()
      {
-         return $this->getUrl('*/*/featuredSurvey', array('id' => $featuredItem->getId()));
+     	$model = Mage::getModel('user_surveys/forms')->getResourceCollection()->addFieldToFilter('visibility', array('eq' => 1));
+     	$data = $model->getData();
+        return $data[0]['id'];
      }
     
-     public function getFormUrl($featuredItem)
+     public function getFormUrl($featuredItemId)
      {
-     	return $this->getUrl('*/*/view', array('id' => $featuredItem->getId()));
+     	return $this->getUrl('*/*/view', array('id' => $featuredItemId));
      }
       
     /**

@@ -31,49 +31,16 @@
 
 <div class="container-fluid">
 
-    <?php foreach ($this->getCollection()->addFieldToFilter('status', array('eq' => 1)) as $formsItem): ?>
-    <?php if(!$formsItem['visibility'] == 1) { 
-    	$viewFormId = $formsItem->getId();
-    ?>
+    <?php foreach ($this->getCollection()->addFieldToFilter('status', array('eq' => 1)) as $formsItem):
+     
+    	$viewFormId = $formsItem->getId(); ?>
          <div id="form_<?php echo $formsItem->getId() ?>" class="page-title">
             <h2>
-                <a href="<?php echo $this->getFormUrl($formsItem) ?>">
+                <a href="<?php echo $this->getFormUrl($viewFormId) ?>">
                     <?php echo $this->escapeHtml($formsItem->getFormName()) ?>
                 </a>
             </h2>
         </div>
-        <?php } 
-         else {
-        	$featuredFormId = $formsItem->getId(); ?>
-        	<?php Mage::register('featuredId', $featuredFormId); ?>
-        	
-        	<a title="Featured Survey" href="index/featuredSurvey/id/<?php echo $featuredFormId; ?>/">Featured Survey</a>
-        
-            <div id="item_<?php echo $formsItem->getId() ?>" class="page-title">
-            <h2>
-                <a href="<?php echo $this->getItemUrl($formsItem) ?>">
-                    <?php echo $this->escapeHtml($formsItem->getFormName()) ?>
-                </a>
-            </h2>
-        </div>
-
-        <?php } ?>
+       
         <?php endforeach; ?>
 </div>
-
-<?php echo $this->getPager() ?>
-<?php 
-		$jsTiny = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS) . 'surveys/tinybox.js';	
-		$jsMain = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS) . 'surveys/ajaxsurvey.js';
-		$cssMain = $this->getSkinUrl('css/ajaxsurvey.css');
-?>
-    <link media="all" href="<?php echo $cssMain?>" type="text/css" rel="stylesheet">
-	<script src="<?php echo $jsTiny?>" type="text/javascript"></script>
-	<script src="<?php echo $jsMain?>" type="text/javascript"></script>
-	<script type="text/javascript">
-		var G_AJAXLOGIN_URL = "index/featuredSurvey/id/<?php echo $featuredFormId ;?>";
-		$$("a[href*=index/featuredSurvey/id/<?php echo $featuredFormId ;?>]").each(function(item) {
-		item.href='javascript:void(0)';
-		Event.observe(item, 'click', showloginbox);
-	});
-	</script>
