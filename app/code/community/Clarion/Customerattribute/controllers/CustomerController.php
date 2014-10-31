@@ -21,6 +21,7 @@ class Clarion_Customerattribute_CustomerController extends Mage_Core_Controller_
         $file = null;
         $plain = false;
         $customerSession = Mage::getSingleton('customer/session');
+        $attr_code = $this->getRequest()->getParam('attr_code');
         if ($customerId = $this->getRequest()->getParam('id')) {
             $customer = Mage::getModel('customer/customer')->load($customerId);
         } elseif ($customerSession->getId()) {
@@ -30,7 +31,7 @@ class Clarion_Customerattribute_CustomerController extends Mage_Core_Controller_
         }
         $path = Mage::getBaseDir('media') . DS . 'customer';
         
-        $file = $customer->getData(Clarion_Customerattribute_Model_Config::Profileimage_ATTR_CODE);
+        $file = $customer->getData($attr_code);
         /* echo "<pre>";
         print_r($file);
         echo "</pre>";
