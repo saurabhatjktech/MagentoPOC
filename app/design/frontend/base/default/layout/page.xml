@@ -114,9 +114,6 @@ Default layout, loads most of the pages
 
         <block type="core/profiler" output="toHtml" name="core_profiler"/>
 
-        <reference name="right">
-     <block type="core/template" name="catalog.sidenav" template="page/custom.phtml" before="cart_sidebar"/>
-</reference>
     </default>
 
     <print translate="label" module="page">

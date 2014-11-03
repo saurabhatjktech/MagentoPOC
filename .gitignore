@@ -1,3 +1,4 @@
+
 /var/
 .buildpath
 .settings/
@@ -5,3 +6,4 @@ media/
 downloader/
 media/catalog/product/cache
 app/etc/local.xml
+

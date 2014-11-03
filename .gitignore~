@@ -1,0 +1,7 @@
+/var/
+.buildpath
+.settings/
+media/
+git rm --cached 
+media/catalog/product/cache
+app/etc/local.xml
