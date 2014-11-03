@@ -45,7 +45,7 @@
                     <host><![CDATA[localhost]]></host>
                     <username><![CDATA[root]]></username>
 
-                    <password><![CDATA[root]]></password>
+                    <password><![CDATA[password]]></password>
 
                     <dbname><![CDATA[magento]]></dbname>
                     <initStatements><![CDATA[SET NAMES utf8]]></initStatements>
