@@ -1,0 +1,8 @@
+<config>
+  <modules>
+    <My_CatalogSearch>
+      <active>true</active>
+      <codePool>local</codePool>
+    </My_CatalogSearch>
+  </modules>
+</config>

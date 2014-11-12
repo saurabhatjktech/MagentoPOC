@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <My_CatalogSearch>
+            <version>1.0.0.0</version>
+        </My_CatalogSearch>
+    </modules>
+    <global>
+
+        <blocks>
+          <MyCatalogSearch>
+             <class>My_CatalogSearch_Block</class>
+          </MyCatalogSearch>
+          <catalogsearch>
+             <rewrite>
+               <advanced_form>My_CatalogSearch_Block_Advanced_Form</advanced_form>
+             </rewrite>
+          </catalogsearch>
+        </blocks>
+
+        <models>
+          <My_CatalogSearch>
+            <class>My_CatalogSearch_Model</class>
+          </My_CatalogSearch>
+          <catalogsearch>
+             <rewrite>
+                <advanced>My_CatalogSearch_Model_Advanced</advanced>
+             </rewrite>
+           </catalogsearch>
+        </models>
+    </global>
+    <!-- <frontend>
+
+        <layout>
+            <updates>
+                <jktech_search>
+                    <file>jktechsearch.xml</file>
+                </jktech_search>
+            </updates>
+        </layout>
+    </frontend> -->
+</config>
