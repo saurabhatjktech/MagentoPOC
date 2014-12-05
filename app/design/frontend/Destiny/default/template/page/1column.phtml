@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php echo $this->getChildHtml('head') ?>
+  </head>
+  <body
+    <?php echo $this->getBodyClass()?' class="'.$this->
+getBodyClass().'"':'' ?>>
+    <?php echo $this->getChildHtml('after_body_start') ?>
+    <?php echo $this->getChildHtml('global_notices') ?>
+    <header>
+      <?php echo $this->getChildHtml('header') ?>
+    </header>
+    <section id="after-header">
+    <div class="container">
+      <?php echo $this->getChildHtml('slider') ?>
+    </div>
+    </section>
+      <section id="maincontent">
+    <div class="container">
+    <div class="row">
+      <?php echo $this->getChildHtml('breadcrumbs') ?> 
+      <!-- <aside class="col-left sidebar col-md-3">
+      <?php echo $this->getChildHtml('left') ?>
+       </aside> -->
+    <div class="col-md-12">
+    <?php echo $this->getChildHtml('global_messages') ?>
+<?php echo $this->getChildHtml('content') ?>
+</div>
+</div>
+</div>
+</section>
+<footer id="footer">
+<div class="container">
+<?php echo $this->getChildHtml('footer') ?>
+</div>
+</footer>
+<?php echo $this->getChildHtml('before_body_end') ?>
+<?php echo $this->getAbsoluteFooter() ?>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#myCarousel').on('slide.bs.carousel', function () {
+          console.log("Sliding instruction Received!");
+        });
+        $('#myCarousel').on('slid.bs.carousel', function () {
+          console.log("Sliding over!");
+        });
+    });
+</script>
+
+</body>
+</html>

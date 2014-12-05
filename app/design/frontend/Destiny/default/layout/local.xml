@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+  <default translate="label" module="page">
+    <reference name="head">
+    <!-- Adding Javascripts -->
+    <action method="addItem">
+      <type>skin_js</type>
+      <name>js/jquery.min.js</name>
+    </action>
+    <action method="addItem">
+      <type>skin_js</type>
+      <name>js/bootstrap.min.js</name>
+    </action>
+    <action method="addItem">
+      <type>skin_js</type>
+      <name>js/jquery.scripts.js</name>
+    </action>
+    <action method="addItem">
+      <type>skin_js</type>
+      <name>js/html5shiv.js</name>
+      <params/><if>lt IE 9</if>
+    </action>
+    <action method="addItem">
+      <type>skin_js</type>
+      <name>js/respond.min.js</name>
+      <params/><if>lt IE 9</if>
+    </action>
+ 
+    <!-- Removing the styles.css -->
+    <action method="removeItem">
+      <type>skin_css</type><name>css/styles.css</name>
+    </action>
+    <!-- Adding Bootstrap Css -->
+    <action method="addItem">
+      <type>skin_css</type>
+      <stylesheet>css/bootstrap.min.css</stylesheet>
+    </action>
+    <!-- Adding the styles.css -->
+    <action method="addItem">
+      <type>skin_css</type>
+      <stylesheet>css/styles.css</stylesheet>
+    </action>
+    </reference>
+
+    <reference name="root">
+      <action method="setTemplate">
+        <template>page/1column.phtml</template>
+      </action>
+      <action method="setTemplate">
+        <template>page/2columns-left.phtml</template>
+      </action>
+      <action method="setTemplate">
+        <template>page/2columns-right.phtml</template>
+      </action>
+      <action method="setTemplate">
+        <template>page/3columns.phtml</template>
+      </action>
+    </reference>
+  </default>
+</layout>
