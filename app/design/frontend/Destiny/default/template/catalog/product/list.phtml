@@ -44,6 +44,7 @@
     <?php // List mode ?>
     <?php if($this->getMode()!='grid'): ?>
     <?php $_iterator = 0; ?>
+    <div class="container">
     <ol class="products-list" id="products-list">
     <?php foreach ($_productCollection as $_product): ?>
         <li class="item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
@@ -79,6 +80,9 @@
                             <?php echo $_nameAfterChild->toHtml(); ?>
                         <?php endforeach; ?>
                     </div>
+                    
+
+
                     <div class="product-secondary">
                         <?php echo $this->getPriceHtml($_product, true) ?>
                     </div>
@@ -108,6 +112,7 @@
         </li>
     <?php endforeach; ?>
     </ol>
+    </div>
     <script type="text/javascript">decorateList('products-list', 'none-recursive')</script>
 
     <?php else: ?>
@@ -116,13 +121,17 @@
 
     <?php $_collectionSize = $_productCollection->count() ?>
     <?php $_columnCount = $this->getColumnCount(); ?>
+    <div class="container col-md-12">
     <ul class="products-grid products-grid--max-<?php echo $_columnCount; ?>-col">
         <?php $i=0; foreach ($_productCollection as $_product): ?>
+            
+
             <?php /*if ($i++%$_columnCount==0): ?>
             <?php endif*/ ?>
+            <div class= "col-md-3">
             <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
                 <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
-                    <?php $_imgSize = 210; ?>
+                    <?php $_imgSize = 310; ?>
                     <img id="product-collection-image-<?php echo $_product->getId(); ?>"
                          src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($_imgSize); ?>"
                          alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
@@ -162,10 +171,12 @@
                     </div>
                 </div>
             </li>
+            </div>
             <?php /*if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
             <?php endif*/ ?>
         <?php endforeach ?>
     </ul>
+    </div>
     <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
     <?php endif; ?>
 

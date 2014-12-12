@@ -38,12 +38,14 @@
         $_cartQty = 0;
     }
 ?>
-
+<div >
 <a href="#header-cart" class="skip-link skip-cart <?php if($_cartQty <= 0): ?> no-count<?php endif; ?>">
-    <span class="icon"></span>
-    <span class="label"><?php echo $this->__('Cart'); ?></span>
+    <!-- <span class="icon"></span> -->
+	<span class="glyphicon glyphicon-shopping-cart" style="color:white;"></span>
+    <span style ="color: white; "><b><?php echo $this->__('Cart'); ?></b></span>
     <span class="count"><?php echo $_cartQty; ?></span>
 </a>
+</div>
 
 <div id="header-cart" class="block block-cart skip-content">
     <?php echo $this->getChildHtml('minicart_content');?>
