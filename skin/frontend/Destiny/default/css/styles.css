@@ -43,6 +43,10 @@ summary {
   display: block;
 }
 
+/*.spam {
+    vertical-align:top;
+}*/
+
 /*
  * Corrects `inline-block` display not defined in IE 8/9.
  */
@@ -509,7 +513,7 @@ a:hover {
 
 a:focus {
   outline-color: #3091c2;
-  color: #FF9B05;
+  color: #525252;
 }
 
 ol,
@@ -917,7 +921,7 @@ body:not(.customer-account) .block:first-child .block-title {
 .footer .button {
   background: #636363;
   display: inline-block;
-  padding: 7px 15px;
+  padding: 7px 8px;
   border: 0;
   color: #FFFFFF;
   font-size: 13px;
@@ -1191,10 +1195,11 @@ a.button:hover {
   background-color: #3399cc;
   border-color: #3399cc;
 }
+.col-md-12{ padding: 0px !important;}
 
 .btn-remove:after {
   content: 'X';
-  color: #3399cc;
+  color: #525252;
   height: 20px;
   line-height: 20px;
   width: 100%;
@@ -1221,6 +1226,10 @@ a.button:hover {
   opacity: 0.8;
 }
 
+.icon-sprite, .btn-remove2, .ratings .rating-box, .ratings .rating-box .rating, .sorter > .sort-by .sort-by-switcher, .sorter > .view-mode .grid, .sorter > .view-mode .list, .skip-nav .icon, .skip-search .icon, #search_mini_form .search-button:before, .skip-account .icon, .skip-cart .icon, .product-view .sharing-links a, .review-summary-table .rating-box .rating-number:after, .ratings-table .rating-box, .ratings-table .rating-box .rating{background-image: url("../images/icon_sprite.png");
+    background-repeat: no-repeat;
+    text-indent: -9999px;
+}}
 .btn-previous:after {
   content: '';
   position: absolute;
@@ -2154,8 +2163,7 @@ a.button:hover {
 }
 
 .pager {
-  float: right;
-  overflow: hidden;
+  float: right; margin:0px !important;
 }
 .pager > .count-container {
   float: left;
@@ -2870,15 +2878,16 @@ form .form-instructions {
 .data-table td,
 .data-table th {
   padding: 10px;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 .data-table th {
-  background: #636363;
+  background: #EDEDED;
   text-transform: uppercase;
   font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
-  line-height: 1.4;
+  line-height: 3.4;
   white-space: nowrap;
+  text-align: left;
 }
 
 .data-table thead th,
@@ -3825,7 +3834,7 @@ a.skip-link {
     -ms-border-radius: 0px;
     -o-border-radius: 0px;
     border-radius: 0px;
-    color: #3399cc;
+    color: #FFFFFF;
     position: static;
     background: none;
     margin-left: 0px;
@@ -4229,7 +4238,7 @@ p.product-name a:hover {
 }
 
 .products-grid .product-image img {
-  width: 96%;
+  width: 90%;
   height: auto;
 }
 .products-grid .product-image img:hidden {
@@ -4259,7 +4268,7 @@ p.product-name a:hover {
 
 .products-grid .price-box {
   color: #a0a0a0;
-  font-size: 13px;
+  font-size: 16px;
   margin: 0 0 5px;
 }
 
@@ -4972,7 +4981,7 @@ p.product-name a:hover {
 }
 .product-view .product-shop .product-name .h1,
 .product-view .product-img-box .product-name h1 {
-  color: #3399cc;
+  color: #636363;
   margin-bottom: 10px;
   border: 0;
 }
@@ -5025,7 +5034,7 @@ p.product-name a:hover {
 .product-view .product-shop .price-box .regular-price .price,
 .product-view .product-shop .price-box .special-price .price,
 .product-view .product-shop .price-box .full-product-price .price {
-  color: #3399cc;
+  color: #636363;
   font-size: 24px;
 }
 .product-view .product-shop .price-box .special-price .price-label {
@@ -6900,7 +6909,7 @@ p.product-name a:hover {
   text-align: center;
   color: #FFFFFF;
   line-height: 26px;
-  background-color: #3399cc;
+  background-color: #525252;
   display: block;
   position: absolute;
   top: 50%;
@@ -6918,7 +6927,7 @@ p.product-name a:hover {
 
 .opc .section.allow .step-title:hover h2,
 .opc .section.active .step-title h2 {
-  color: #3399cc;
+  color: #525252;
 }
 
 .opc .section .step-title h2 {
@@ -9132,7 +9141,7 @@ div.paypal-logo span > img {
   display: none;
 }
 .header-minicart .block-subtitle {
-  color: #50A4CF;
+  color: #525252;
   font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
   font-size: 10px;
   font-weight: bold;
@@ -9174,7 +9183,7 @@ div.paypal-logo span > img {
   font-weight: bold;
 }
 .header-minicart .product-details .product-name a {
-  color: #3399cc;
+  color: #525252;
 }
 .header-minicart .info-wrapper {
   margin-bottom: 0.5em;
@@ -9220,7 +9229,7 @@ div.paypal-logo span > img {
   line-height: 2em;
 }
 .header-minicart .subtotal .label {
-  color: white;
+  color: #525252;
   text-transform: uppercase;
 }
 .header-minicart .subtotal .price {

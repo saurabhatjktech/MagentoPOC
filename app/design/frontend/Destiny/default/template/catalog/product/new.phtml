@@ -25,20 +25,36 @@
  */
 ?>
 <?php if (($_products = $this->getProductCollection()) && $_products->getSize()): ?>
-<h2 class="subtitle"><?php echo $this->__('New Products') ?></h2>
+<!-- <h2 class="subtitle"><?php echo $this->__('New Products') ?></h2> -->
+<div class="block-title">
+        <!-- <strong><span><?php echo $this->__('Recently Viewed Products') ?></span></strong> -->
+        <h2 class="subtitle"><?php echo $this->__('New Products') ?></h2>
+    </div>
+
 <div class="container">
   <?php $_columnCount = $this->getColumnCount(); ?>
+
+
     <div class="products-grid products-grid--max-<?php echo $_columnCount; ?>-col">
     <?php $i=0; foreach ($_products->getItems() as $_product): ?>
         <?php /*if ($i++%$_columnCount==0): ?>
         <ul class="products-grid">
-        <?php endif*/ ?><div class="row col-md-2"><div class="a-center">
+        <?php endif*/ ?>
+           
+        <div class="row col-md-2"><div class="a-center">
             <div class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
                 <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>" class="product-image">
-                    <?php $_imgSize = 260; ?>
-                    <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($_imgSize); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                    
+                    <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
                 </a>
-                <h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>"><?php echo $this->escapeHtml($_product->getName()) ?></a></h3>
+                <h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>">
+                      <?php
+        // define the maximum length of the product name here
+        
+        echo Mage::helper('core/string')->truncate($this->escapeHtml($_product->getName()), $length = 20, $etc = '...', $remainder = '', $breakWords = true);
+    ?>
+
+                </a></h3>
                 <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
                 <?php echo $this->getPriceHtml($_product, true, '-new') ?>
                 <div class="action"><span class="row">
@@ -60,7 +76,7 @@
         <?php /*if ($i%$_columnCount==0 || $i==count($_products)): ?>
         </ul>
         <?php endif*/ ?>
-    <?php endforeach; ?>
+    <?php endforeach; ?><!--  die("HERE"); -->
     </div>
   </div>
 <?php endif; ?>

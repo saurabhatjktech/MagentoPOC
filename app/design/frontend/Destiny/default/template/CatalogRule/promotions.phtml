@@ -1,0 +1,22 @@
+<h2 class="subtitle"><?php echo $this->__('Promotions') ?></h2>
+<?php if (($_promotions = $this->getPromotionCollection()) && $_promotions->getSize()): ?>
+    <div class="container"> 
+        <div class="promotions-grid promotions-grid--max-<?php $_collectionSize = 5;//count($_products->getItems()); echo $_collectionSize; ?>-col" id="promotions-grid-table">
+            <?php $i=1; foreach ($_promotions->getName() as $_promotion): ?>
+                
+                <div id="td_<?php echo $i;?>" <?php if($i%5==0 or $i==$_collectionSize){echo 'class="last"';} ?> >
+                    <div id="cont_<?php echo $i;?>">
+                        <div class=" row col-md-2">
+                           <div >     
+                                
+                                <h3 class="promotion-name"><a href="<?php echo $_promotion->getPromotionUrl() ?>" title="<?php echo $this->htmlEscape($_promotion->getName()) ?>">
+                                 
+                                 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php $i++; endforeach; $kol = $_collectionSize; ?>
+        </div>
+    </div>
+<?php endif; ?>

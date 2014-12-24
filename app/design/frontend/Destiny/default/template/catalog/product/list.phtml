@@ -44,7 +44,7 @@
     <?php // List mode ?>
     <?php if($this->getMode()!='grid'): ?>
     <?php $_iterator = 0; ?>
-    <div class="container">
+    <div class="col-md-12">
     <ol class="products-list" id="products-list">
     <?php foreach ($_productCollection as $_product): ?>
         <li class="item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
@@ -94,14 +94,14 @@
                         <?php else: ?>
                             <p class="action availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
                         <?php endif; ?>
-                        <ul class="add-to-links">
+                        <!-- <ul class="add-to-links">
                             <?php if ($this->helper('wishlist')->isAllow()) : ?>
                                 <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
                             <?php endif; ?>
                             <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
                                 <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
                             <?php endif; ?>
-                        </ul>
+                        </ul> -->
                     </div>
                     <div class="desc std">
                         <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
@@ -121,23 +121,28 @@
 
     <?php $_collectionSize = $_productCollection->count() ?>
     <?php $_columnCount = $this->getColumnCount(); ?>
-    <div class="container col-md-12">
-    <ul class="products-grid products-grid--max-<?php echo $_columnCount; ?>-col">
+    <div class="" >
+    <div class="products-grid products-grid--max-<?php echo $_columnCount; ?>-col">
+        <div align="center">
         <?php $i=0; foreach ($_productCollection as $_product): ?>
             
 
             <?php /*if ($i++%$_columnCount==0): ?>
             <?php endif*/ ?>
-            <div class= "col-md-3">
-            <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+            <div class="col-md-4"><div class="a-center">
+            <div class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
                 <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
-                    <?php $_imgSize = 310; ?>
+                    
                     <img id="product-collection-image-<?php echo $_product->getId(); ?>"
-                         src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize($_imgSize); ?>"
+                         src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>"
                          alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
                 </a>
                 <div class="product-info">
-                    <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
+                    <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>">
+                        <?php
+                            echo Mage::helper('core/string')->truncate($this->escapeHtml($_product->getName()), $length = 15, $etc = '...', $remainder = '', $breakWords = true);
+                        ?>
+                    </a></h2>
 
                     <?php
                         $_nameAfterChildren = $this->getChild('name.after')->getSortedChildren();
@@ -149,9 +154,9 @@
                     <?php endforeach; ?>
 
                     <?php echo $this->getPriceHtml($_product, true) ?>
-                    <?php if($_product->getRatingSummary()): ?>
+                    <?php /*if($_product->getRatingSummary()): ?>
                     <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
-                    <?php endif; ?>
+                    <?php endif;*/ ?>
                     <div class="actions">
                         <?php if($_product->isSaleable() && !$_product->canConfigure()): ?>
                             <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
@@ -160,38 +165,40 @@
                         <?php else: ?>
                             <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
                         <?php endif; ?>
-                        <ul class="add-to-links">
+                        <!-- <div class="add-to-links">
                             <?php if ($this->helper('wishlist')->isAllow()) : ?>
                                 <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
                             <?php endif; ?>
                             <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
                                 <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
                             <?php endif; ?>
-                        </ul>
+                        </div> -->
                     </div>
                 </div>
-            </li>
             </div>
+            </div></div>
             <?php /*if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
+        
             <?php endif*/ ?>
         <?php endforeach ?>
-    </ul>
+        </div>
+    </div>
     </div>
     <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
     <?php endif; ?>
 
+    </div>
+    <?php endif; ?>
     <div class="toolbar-bottom">
         <?php echo $this->getToolbarHtml() ?>
     </div>
-</div>
-<?php endif; ?>
 
-<?php
+    <?php
     //set product collection on after blocks
     $_afterChildren = $this->getChild('after')->getSortedChildren();
     foreach($_afterChildren as $_afterChildName):
         $_afterChild = $this->getChild('after')->getChild($_afterChildName);
         $_afterChild->setProductCollection($_productCollection);
-    ?>
-    <?php echo $_afterChild->toHtml(); ?>
-<?php endforeach; ?>
+        ?>
+        <?php echo $_afterChild->toHtml(); ?>
+    <?php endforeach; ?>

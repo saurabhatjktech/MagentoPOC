@@ -26,11 +26,12 @@
 /* @var $this Mage_Reports_Block_Product_Viewed */
 ?>
 <?php if ($_products = $this->getRecentlyViewedProducts()): ?>
-    <h2 class="subtitle"><?php echo $this->__('Recently Viewed Products') ?></h2>
+    <!-- <h2 class="subtitle"><?php echo $this->__('Recently Viewed') ?></h2> -->
 <div class="block block-list block-viewed">
-    <!-- <div class="block-title">
-        <strong><span><?php echo $this->__('Recently Viewed Products') ?></span></strong>
-    </div> -->
+    <div class="block-title">
+        <!-- <strong><span><?php echo $this->__('Recently Viewed Products') ?></span></strong> -->
+        <h2 class="subtitle"><?php echo $this->__('Recently Viewed Products') ?></h2>
+    </div>
     <div class="block-content">
         <div id="recently-viewed-items" class="mini-products-list">
         <?php foreach ($_products as $_item): ?><div class="row">

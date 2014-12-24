@@ -231,7 +231,7 @@ body .promos > li {
   width: 23% !important;
   margin-right: 2.66667% !important;
   margin-bottom: 10px;
-  border: 1px solid #cccccc;
+  border: 1px solid #FF9B05;
   padding: 10px;
 }
 
@@ -291,6 +291,7 @@ body .promos > li {
   width: 100%;
   border: 1px solid #E2E2E2;
   margin-bottom: 100px;
+  background-color: #FFFFFF;
 }
 
 .catalog-category-view div.categoryland-caption {
