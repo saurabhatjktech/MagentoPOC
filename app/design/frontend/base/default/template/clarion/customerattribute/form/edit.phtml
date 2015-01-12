@@ -14,7 +14,7 @@
  * @var $this Mage_Customer_Block_form_edit
  */
 ?>
-<div class="row" style="background-color : #FFFFFF">
+<div class="row" style="background-color : #F4F4F4">
 <div class="page-title">
     <h1><?php echo $this->__('Edit Account Information') ?></h1>
 </div>
@@ -22,6 +22,7 @@
 <form action="<?php echo $this->getUrl('customer/account/editPost') ?>" method="post" id="form-validate" autocomplete="off">
     <div class="fieldset">
         <?php echo $this->getBlockHtml('formkey')?>
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
         <h2 class="legend"><?php echo $this->__('Account Information') ?></h2>
         <ul class="form-list">
             <li class="fields">
@@ -159,7 +160,7 @@
     <?php endif; ?>
 
     <div class="buttons-set">
-        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        
         <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
         <button type="submit" title="<?php echo $this->__('Save') ?>" class="button"><span><span><?php echo $this->__('Save') ?></span></span></button>
     </div>

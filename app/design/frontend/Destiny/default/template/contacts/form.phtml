@@ -25,15 +25,15 @@
  */
 ?>
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
-<div class="col-md-9" class="a-center"></br>
-<div class="row" style="background-color : #FFFFFF">
+<div class="col-md-10" class="a-center"></br>
+<div class="row" style="background-color : #F4F4F4">
 <div class="page-title">
     <h1><?php echo Mage::helper('contacts')->__('Contact Us') ?></h1>
 </div>
 <form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post" class="scaffold-form">
     <div class="fieldset">
-        <h2 class="legend"><?php echo Mage::helper('contacts')->__('Contact Information') ?></h2>
         <p class="required"><?php echo Mage::helper('contacts')->__('* Required Fields') ?></p>
+        <h2 class="legend"><?php echo Mage::helper('contacts')->__('Contact Information') ?></h2>
         <ul class="form-list">
             <li class="fields">
                 <div class="field">

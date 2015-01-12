@@ -502,7 +502,7 @@ textarea {
 }
 
 a {
-  color: #525252;
+  color: #FF9B05;
   text-decoration: none;
 }
 
@@ -997,7 +997,7 @@ a.button:hover {
   text-decoration: underline;
   text-transform: uppercase;
   display: inline-block;
-  color: #3399cc;
+  color: #FF9B05;
   font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
 }
 .button2 span:hover,
@@ -1091,9 +1091,9 @@ a.button:hover {
   text-align: right;
 }
 .buttons-set p.required {
-  margin: 0;
-  margin-left: 10px;
-  line-height: 33px;
+  margin: -725px 16px -12px;
+  margin-left: 728px;
+  line-height: 16px;
   float: right;
 }
 .buttons-set .back-link {
@@ -2504,6 +2504,7 @@ body.customer-account .data-table .show-details .summary-collapse:hover:before {
   float: right;
   font-size: 12px;
   margin-top: 0px;
+  padding-left: 300px;
 }
 
 .fieldset + .fieldset {
@@ -2724,7 +2725,7 @@ input:-moz-placeholder {
  */
 p.required,
 .validation-advice {
-  margin: 2px 175px 0;
+  /*margin: 2px 175px 0;*/
   color: red;
   font-size: 13px;
   position: absolute;
@@ -2732,6 +2733,10 @@ p.required,
 
 .new-users{
   padding: 30px;
+}
+
+.search-form{
+  padding: 20px;
 }
 
 .fieldset{
@@ -3657,7 +3662,7 @@ a.skip-link {
 
 #search {
   max-width: 85%;
-  height: 40px;
+  height: 38px;
   margin-top: 0;
   padding-right: 40px;
   font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
@@ -4249,7 +4254,7 @@ p.product-name a:hover {
 }
 
 .products-grid .product-image img {
-  width: 92%;
+  width: 88%;
   height: auto;
 }
 .products-grid .product-image img:hidden {
@@ -9531,7 +9536,7 @@ div.paypal-logo span > img {
 }
 .cms-page-view .std h1,
 .cms-no-route .std h1 {
-  color: #3399cc;
+  color: #FF9B05;
 }
 .cms-page-view .std h2,
 .cms-no-route .std h2 {
@@ -9670,6 +9675,7 @@ div.paypal-logo span > img {
 }
 #contactForm .fieldset .legend + .required {
   margin: 0;
+  margin-left: 405px;
 }
 
 @media only screen and (max-width: 770px) {
