@@ -35,7 +35,7 @@
 <div class="container"><div class="row col-md-12">
 <?php echo $this->getChildHtml('login_before') ?>
 <div class="col2-set"<?php if (!$this->helper('customer')->isRegistrationAllowed() && !$this->getQuote()->isAllowedGuestCheckout()) echo ' login-only' ?>>
-    <div class="col-md-5" style="background-color : #FFFFFF">
+    <div class="col-md-5" style="background-color : #FFFFFF"></br></br>
         <h3>
             <?php if( $this->getQuote()->isAllowedGuestCheckout() && $this->helper('customer')->isRegistrationAllowed() ): ?>
                 <?php echo $this->__('Checkout as a Guest or Register') ?>
@@ -83,10 +83,10 @@
                     <button id="onepage-guest-register-button" type="submit" class="button"><span><span><?php echo $this->__('Register') ?></span></span></button>
                 </form>
             <?php endif; ?>
-        </div>
+        </div></br></br></br>
     </div>
     <div class="col-md-1"></div>
-    <div class="col-md-5" style="background-color : #FFFFFF">
+    <div class="col-md-5" style="background-color : #FFFFFF"></br>
         <h3><?php echo $this->__('Returning Customers') ?></h3>
         <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
         <form id="login-form" action="<?php echo $this->getPostAction() ?>" method="post">
@@ -119,7 +119,7 @@
         </form>
         <div class="buttons-set">
             <button type="submit" class="button" onclick="onepageLogin(this)"><span><span><?php echo $this->__('Login') ?></span></span></button>
-        </div>
+        </div></br>
     </div>
 </div></div></div>
 

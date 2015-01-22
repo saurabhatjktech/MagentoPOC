@@ -1092,7 +1092,7 @@ a.button:hover {
 }
 .buttons-set p.required {
   margin: -725px 16px -12px;
-  margin-left: 728px;
+  margin-left: 584px;
   line-height: 16px;
   float: right;
 }
@@ -2729,6 +2729,7 @@ p.required,
   color: red;
   font-size: 13px;
   position: absolute;
+  padding-left: 200px;
 }
 
 .new-users{
