@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+      <Multivendor_Vendors>
+          <version>0.1.0</version>
+      </Multivendor_Vendors>
+  </modules>
+  <frontend>
+      <routers>
+          <customer>
+              <use>standard</use>
+              <args>
+                  <module>Multivendor_Vendors</module>
+                  <frontName>customer</frontName>
+              </args>
+          </customer>
+      </routers>
+  </frontend>
+  <global>
+      <blocks>
+        <customer>
+            <rewrite>
+                <form_login>Multivendor_Vendors_Block_Form_Login</form_login>
+           </rewrite>
+        </customer>
+      </blocks>
+   
+      <routers>
+          <customer>
+              <rewrite>
+                  <multivendor_vendors_account>
+                    <from><![CDATA[#^/account/#]]></from>
+                    <to>/customer/account/</to>
+                  </multivendor_vendors_account>
+              </rewrite>
+          </customer>
+      </routers>
+      <helpers>
+            <customer>
+                <rewrite>
+                    <data>Multivendor_Vendors_Helper_Data</data>
+               </rewrite>
+            </customer>
+      </helpers>
+  </global>
+</config>
